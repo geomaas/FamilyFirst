@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FamilyFirst.iml" filepath="$PROJECT_DIR$/.idea/modules/FamilyFirst.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FamilyFirst_main.iml" filepath="$PROJECT_DIR$/.idea/modules/FamilyFirst_main.iml" group="FamilyFirst" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FamilyFirst_test.iml" filepath="$PROJECT_DIR$/.idea/modules/FamilyFirst_test.iml" group="FamilyFirst" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FamilyFirst 2.iml" filepath="$PROJECT_DIR$/.idea/modules/FamilyFirst 2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FamilyFirst_2_main.iml" filepath="$PROJECT_DIR$/.idea/modules/FamilyFirst_2_main.iml" group="FamilyFirst 2" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/FamilyFirst_2_test.iml" filepath="$PROJECT_DIR$/.idea/modules/FamilyFirst_2_test.iml" group="FamilyFirst 2" />
     </modules>
   </component>
 </project>
