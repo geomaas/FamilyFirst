@@ -8,10 +8,7 @@ import com.james.utils.PasswordStorage;
 import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
@@ -35,6 +32,27 @@ public class FamilyController {
     @PostConstruct
     public void init() throws SQLException, FileNotFoundException, PasswordStorage.CannotPerformOperationException {
         Server.createWebServer().start();
+    }
+
+    //create page @localhost 8080
+    @RequestMapping (path = "/", method = RequestMethod.GET)
+    public String placeholderFrontPage (){
+        return  "";
+    }
+
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public boolean login(@RequestBody User user, HttpSession session) throws Exception {
+        User userInDb = users.findByUserName(user.getUserName());
+        if (userInDb == null) {
+            user.setPassword(PasswordStorage.createHash(user.getPassword()));
+            users.save(user);
+        }
+        else if (!PasswordStorage.verifyPassword(user.getPassword(), userInDb.getPassword())) {
+            throw new Exception("Incorrect user information");
+        }
+
+        session.setAttribute("userName", user.getUserName());
+        return true;
     }
 
     //create page @localhost 8080/tasks
@@ -62,24 +80,19 @@ public class FamilyController {
         return task;
     }
 
-    @RequestMapping (path = "/hide{taskId}", method = RequestMethod.POST)
-    public Task hide (@PathVariable int taskId) {
-        Task task = tasks.findOne(taskId);
-        task.setHidden(true);
-        tasks.save(task);
-        return task;
-    }
-
-    @RequestMapping (path = "/complete{taskId}", method = RequestMethod.POST)
-    public Task complete (HttpSession session, @PathVariable int taskId) {
-        String userName = (String) session.getAttribute("userName");
-        User user = users.findByUserName(userName);
-        Task task = tasks.findOne(taskId);
-        task.setCompletedByUser(user);
-        tasks.save(task);
-        return task;
-    }
-
+    //@RequestMapping(path = "/downVote{id}", method = RequestMethod.POST)
+//    public Song downVotedSongList(HttpSession session, @PathVariable int id) {
+//        String username = (String) session.getAttribute("username");
+//        User user = users.findFirstByUsername(username);
+//
+//        Song downVotedSong = songs.findOne(id);
+//        downVotedSong.setLikes(downVotedSong.getLikes() - 1);
+//        songs.save(downVotedSong);
+//
+//        List<Song> entireList = (List<Song>) songs.findAll();
+//        return downVotedSong;
+//    }
+//
     @RequestMapping (path = "/logout", method = RequestMethod.POST)
     public HttpStatus logout(HttpSession session) {
         session.invalidate();
