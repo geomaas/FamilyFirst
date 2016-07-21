@@ -2,8 +2,12 @@ let app = angular.module('familyFirst', ['ngRoute']);
 
 
 // Controllers:
+require('./controllers/loginController')(app);
+require('./controllers/taskManagerController')(app);
 
 // Services:
+require('./services/userService')(app);
+require('./services/tasksService')(app);
 
 // Router:
 app.config(['$routeProvider', function ($routeProvider) {
@@ -12,10 +16,11 @@ app.config(['$routeProvider', function ($routeProvider) {
       redirectTo: '/login',
     })
     .when('/login', {
-      controller: 'userController',
-      templateUrl: 'templates/loginTemplate.html',
+      controller: 'loginController',
+      templateUrl: 'templates/login.html',
     })
-    .when('/login', {
-      controller: 'userController',
-      templateUrl: 'templates/loginTemplate.html',
+    .when('/tasks', {
+      controller: 'taskManagerController',
+      templateUrl: 'templates/taskManager.html',
     })
+}]);
