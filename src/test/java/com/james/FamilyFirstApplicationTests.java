@@ -49,7 +49,10 @@ public class FamilyFirstApplicationTests {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
 
+    @Test
+    public void TestLogin() {
 
+    }
 
 	@Test
 	public void TasksGetRouteTest() throws Exception {
