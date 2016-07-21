@@ -10,7 +10,7 @@
 
 <div class="footer">
   <div class="addTask">
-    <input type="text" name="task" value="" placeholder="add a new task">
-    <button type="button" name="add">Add Task</button>
+    <input ng-model='taskText' type="text" name="task" value="" placeholder="add a new task">
+    <button ng-click='add()' type="button" name="add">Add Task</button>
   </div>
 </div>
