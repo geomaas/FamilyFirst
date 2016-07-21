@@ -37,12 +37,6 @@ public class FamilyController {
         Server.createWebServer().start();
     }
 
-    //create page @localhost 8080
-    @RequestMapping (path = "/", method = RequestMethod.GET)
-    public String placeholderFrontPage (){
-        return  "";
-    }
-
     //create page @localhost 8080/tasks
     @RequestMapping (path = "/tasks", method = RequestMethod.GET)
     public ArrayList<Task> tasks (){
@@ -68,19 +62,24 @@ public class FamilyController {
         return task;
     }
 
-    //@RequestMapping(path = "/downVote{id}", method = RequestMethod.POST)
-//    public Song downVotedSongList(HttpSession session, @PathVariable int id) {
-//        String username = (String) session.getAttribute("username");
-//        User user = users.findFirstByUsername(username);
-//
-//        Song downVotedSong = songs.findOne(id);
-//        downVotedSong.setLikes(downVotedSong.getLikes() - 1);
-//        songs.save(downVotedSong);
-//
-//        List<Song> entireList = (List<Song>) songs.findAll();
-//        return downVotedSong;
-//    }
-//
+    @RequestMapping (path = "/hide{taskId}", method = RequestMethod.POST)
+    public Task hide (@PathVariable int taskId) {
+        Task task = tasks.findOne(taskId);
+        task.setHidden(true);
+        tasks.save(task);
+        return task;
+    }
+
+    @RequestMapping (path = "/complete{taskId}", method = RequestMethod.POST)
+    public Task complete (HttpSession session, @PathVariable int taskId) {
+        String userName = (String) session.getAttribute("userName");
+        User user = users.findByUserName(userName);
+        Task task = tasks.findOne(taskId);
+        task.setCompletedByUser(user);
+        tasks.save(task);
+        return task;
+    }
+
     @RequestMapping (path = "/logout", method = RequestMethod.POST)
     public HttpStatus logout(HttpSession session) {
         session.invalidate();

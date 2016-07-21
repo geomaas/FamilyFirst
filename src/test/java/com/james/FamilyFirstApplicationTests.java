@@ -73,13 +73,28 @@ public class FamilyFirstApplicationTests {
 		ResultActions ra = mockMvc.perform(
 				MockMvcRequestBuilders.get("/tasks")
 		);
-		MvcResult result = ra.andReturn();
-		MockHttpServletResponse response = result.getResponse();
-		String json = response.getContentAsString();
 
-		ObjectMapper om = new ObjectMapper();
-		ArrayList<Task> testList = om.readValue(json, ArrayList.class);
-
-		System.out.println(testList);;
+		Assert.assertTrue(tasks.findOne((int) tasks.count()).getTaskText().contains("thing"));
 	}
+
+//	@Test
+//	public void TasksGetRouteTest() throws Exception {
+//		User testuser = new User("bob", "pass");
+//		users.save(testuser);
+//		Task task = new Task(testuser, "thing to do", null, null, false);
+//		tasks.save(task);
+//
+//		ResultActions ra = mockMvc.perform(
+//				MockMvcRequestBuilders.get("/tasks")
+//		);
+//		MvcResult result = ra.andReturn();
+//		MockHttpServletResponse response = result.getResponse();
+//		String json = response.getContentAsString();
+//
+//		ObjectMapper om = new ObjectMapper();
+//		ArrayList<Task> testList = om.readValue(json, ArrayList.class);
+//
+//		System.out.println(testList.get(0).getTaskText());
+//	}
+
 }
