@@ -67,7 +67,7 @@ public class FamilyController {
     }
 
     @RequestMapping (path = "/comment{taskId}", method = RequestMethod.POST)
-    public Task comment (String comment, @PathVariable int taskId) {
+    public Task comment (@RequestBody String comment, @PathVariable int taskId) {
         Task task = tasks.findOne(taskId);
         task.setCommentText(comment);
         tasks.save(task);

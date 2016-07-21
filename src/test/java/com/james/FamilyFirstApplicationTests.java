@@ -49,7 +49,16 @@ public class FamilyFirstApplicationTests {
 		mockMvc = MockMvcBuilders.webAppContextSetup(wac).build();
 	}
 
-
+//    @Test
+//    public void TestLogin() throws Exception {
+//        mockMvc.perform(
+//            MockMvcRequestBuilders.post("/login")
+//            .param("userName", "TestUser")
+//            .param("password", "testPass")
+//        );
+//
+//        Assert.assertTrue(users.count() == 1);
+//    }
 
 	@Test
 	public void TasksGetRouteTest() throws Exception {
