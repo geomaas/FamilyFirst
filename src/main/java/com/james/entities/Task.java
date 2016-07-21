@@ -54,6 +54,10 @@ public class Task {
         return completedByUser;
     }
 
+    public void setCompletedByUser(User completedByUser) {
+        this.completedByUser = completedByUser;
+    }
+
     public String getCommentText() {
         return commentText;
     }
@@ -64,5 +68,9 @@ public class Task {
 
     public boolean isHidden() {
         return hidden;
+    }
+
+    public void setHidden(boolean hidden) {
+        this.hidden = hidden;
     }
 }

@@ -34,12 +34,6 @@ public class FamilyController {
         Server.createWebServer().start();
     }
 
-    //create page @localhost 8080
-    @RequestMapping (path = "/", method = RequestMethod.GET)
-    public String placeholderFrontPage (){
-        return  "";
-    }
-
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public boolean login(@RequestBody User user, HttpSession session) throws Exception {
         User userInDb = users.findByUserName(user.getUserName());
@@ -80,19 +74,14 @@ public class FamilyController {
         return task;
     }
 
-    //@RequestMapping(path = "/downVote{id}", method = RequestMethod.POST)
-//    public Song downVotedSongList(HttpSession session, @PathVariable int id) {
-//        String username = (String) session.getAttribute("username");
-//        User user = users.findFirstByUsername(username);
-//
-//        Song downVotedSong = songs.findOne(id);
-//        downVotedSong.setLikes(downVotedSong.getLikes() - 1);
-//        songs.save(downVotedSong);
-//
-//        List<Song> entireList = (List<Song>) songs.findAll();
-//        return downVotedSong;
-//    }
-//
+    @RequestMapping (path = "/hide{taskId}", method = RequestMethod.POST)
+    public Task hide (@PathVariable int taskId) {
+        Task task = tasks.findOne(taskId);
+        task.setHidden(true);
+        tasks.save(task);
+        return task;
+    }
+
     @RequestMapping (path = "/logout", method = RequestMethod.POST)
     public HttpStatus logout(HttpSession session) {
         session.invalidate();
