@@ -19,8 +19,6 @@
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="FamilyFirst_2_main" target="1.8" />
-      <module name="FamilyFirst_2_test" target="1.8" />
       <module name="FamilyFirst_main" target="1.8" />
       <module name="FamilyFirst_test" target="1.8" />
     </bytecodeTargetLevel>
