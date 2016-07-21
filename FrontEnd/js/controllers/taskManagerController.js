@@ -11,9 +11,9 @@ module.exports = function(app){
       taskService.getAllTasks();
     };
     $scope.model= {};
-    $scope.comment = function(id){
-      console.log(`send comment text ${$scope.model.newComment}`);
-      console.log(`task Id: ${id}`);
+    $scope.comment = function(index){
+      console.log(`send comment text ${$scope.model.newComment[index]}`);
+      // console.log(`task Id: ${taskList[index].id}`);
     };
   }]);
 };
