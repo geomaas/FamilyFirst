@@ -58,7 +58,7 @@ public class FamilyController {
 
     //add a task
     @RequestMapping (path = "/addTask", method = RequestMethod.POST)
-    public Task addTask(HttpSession session, String taskText) {
+    public Task addTask(HttpSession session, @RequestBody String taskText) {
         String userName = (String) session.getAttribute("userName");
         User user = users.findByUserName(userName);
         Task task = new Task(user, taskText, null, null, false);
