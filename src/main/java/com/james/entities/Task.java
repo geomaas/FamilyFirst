@@ -58,6 +58,10 @@ public class Task {
         return commentText;
     }
 
+    public void setCommentText(String commentText) {
+        this.commentText = commentText;
+    }
+
     public boolean isHidden() {
         return hidden;
     }
