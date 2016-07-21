@@ -14,10 +14,10 @@ module.exports = function(app){
               url: '/tasks',
           }).then(function(response) {
             console.log(response);
-            // angular.copy(response.data, allSongList);
+            angular.copy(response.data, allTasksList);
           })
           // console.log("allsongs arrar", allSongList);
-          // return allSonglist
+          return allTasksList
       },
       addTask: function(text){
         console.log(`add a new task`);
@@ -29,7 +29,6 @@ module.exports = function(app){
               }
           }).then(function(response) {
             console.log(response);
-            // angular.copy(response.data, allSongList);
           })
       }
 
