@@ -8,9 +8,12 @@ module.exports = function(app){
     $scope.add = function(){
       console.log(`send task text ${$scope.taskText}`);
       taskService.addTask($scope.taskText);
-    }
-    $scope.comment = function(){
-      console.log((`send comment text ${$scope.newComment}`));
-    }
+      taskService.getAllTasks();
+    };
+    $scope.model= {};
+    $scope.comment = function(id){
+      console.log(`send comment text ${$scope.model.newComment}`);
+      console.log(`task Id: ${id}`);
+    };
   }]);
 };

@@ -16,7 +16,7 @@ module.exports = function(app){
             console.log(response);
             angular.copy(response.data, allTasksList);
           })
-          // console.log("allsongs arrar", allSongList);
+          console.log("allTaskList array:", allTasksList);
           return allTasksList
       },
       addTask: function(text){
@@ -24,9 +24,8 @@ module.exports = function(app){
         $http({
               method: 'POST',
               url: '/addTask',
-              data: {
-                taskText: text,
-              }
+              data: text,
+
           }).then(function(response) {
             console.log(response);
           })

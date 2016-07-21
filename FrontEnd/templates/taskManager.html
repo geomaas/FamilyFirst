@@ -3,14 +3,15 @@
 </div>
 
 <div class="taskContainer">
-  <div  class="task">
+  <div ng-repeat='task in taskList' class="task">
     <div class="postedBy">
-      <h6>Username</h6>
+      <h6>{{task.user.userName}}</h6>
     </div>
-    <h4>Task Text</h4>
+    <h4>{{task.taskText}}</h4>
     <div class="comments">
-      <input ng-submit='comment()' ng-model="newComment" type="text" name="name" value="" placeholder="comments">
-      <h6>comments</h6>
+        <input ng-model="model.newComment" type="text" name="name" value="" placeholder="comments">
+        <button ng-click='comment(task.taskId)' type="button" name="button">Add</button>
+      <h6>{{task.commentText}}</h6>
     </div>
   </div>
 </div>
