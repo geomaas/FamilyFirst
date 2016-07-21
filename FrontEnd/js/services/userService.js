@@ -2,7 +2,7 @@ module.exports = function(app){
 
 // this service will handle the user data
   app.factory('userService', ['$http','$location', function($http, $location){
-
+    
 
 
 
@@ -18,17 +18,10 @@ module.exports = function(app){
               }
           }).then(function(response) {
             console.log("here is whats coming back", response );
-            // from APITunes:
-            // if(response.data.isArtist === true){
-            //   $location.path('/artist');
-            //   angular.copy(response.data, currentUser )
-            //   console.log(currentUser);
-            // }else if (response.data.isUser === true) {
-            //   $location.path('/guest');
-            //   angular.copy(response.data, currentUser )
-            //   console.log(currentUser);
-            //
-            // }
+            if(response.data === true){
+              $location.path('/tasks');
+            }
+
           })
       },
 
