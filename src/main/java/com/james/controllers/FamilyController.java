@@ -58,7 +58,7 @@ public class FamilyController {
 
     //add a task
     @RequestMapping (path = "/addTask", method = RequestMethod.POST)
-    public Task addTask(HttpSession session, String taskText) {
+    public Task addTask(HttpSession session, @RequestBody String taskText) {
         String userName = (String) session.getAttribute("userName");
         User user = users.findByUserName(userName);
         Task task = new Task(user, taskText, null, null, false);
@@ -67,7 +67,7 @@ public class FamilyController {
     }
 
     @RequestMapping (path = "/comment{taskId}", method = RequestMethod.POST)
-    public Task comment (String comment, @PathVariable int taskId) {
+    public Task comment (@RequestBody String comment, @PathVariable int taskId) {
         Task task = tasks.findOne(taskId);
         task.setCommentText(comment);
         tasks.save(task);
