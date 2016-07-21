@@ -4,13 +4,20 @@
 
 <div class="taskContainer">
   <div  class="task">
-
+    <div class="postedBy">
+      <h6>Username</h6>
+    </div>
+    <h4>Task Text</h4>
+    <div class="comments">
+      <input ng-submit='comment()' ng-model="newComment" type="text" name="name" value="" placeholder="comments">
+      <h6>comments</h6>
+    </div>
   </div>
 </div>
 
 <div class="footer">
   <div class="addTask">
-    <input type="text" name="task" value="" placeholder="add a new task">
-    <button type="button" name="add">Add Task</button>
+    <input ng-model='taskText' type="text" name="task" value="" placeholder="add a new task">
+    <button ng-click='add()' type="button" name="add">Add Task</button>
   </div>
 </div>

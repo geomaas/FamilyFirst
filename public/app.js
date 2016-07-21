@@ -23,11 +23,15 @@ module.exports = function(app){
 // this handles the task manager view
   app.controller('taskManagerController', ['$scope', 'userService', 'taskService', function($scope, userService, taskService){
 
+    $scope.taskList = taskService.getAllTasks();
 
-
-
-
-
+    $scope.add = function(){
+      console.log(`send task text ${$scope.taskText}`);
+      taskService.addTask($scope.taskText);
+    }
+    $scope.comment = function(){
+      console.log((`send comment text ${$scope.newComment}`));
+    }
   }]);
 };
 
@@ -64,13 +68,36 @@ module.exports = function(app){
 
 // this service will handle the task data
   app.factory('taskService', ['$http','$location', function($http, $location){
-
+      let allTasksList = [];
 
 
 
     return {
-
-
+      getAllTasks: function(){
+        console.log(`get tasks from server`);
+        $http({
+              method: 'GET',
+              url: '/tasks',
+          }).then(function(response) {
+            console.log(response);
+            // angular.copy(response.data, allSongList);
+          })
+          // console.log("allsongs arrar", allSongList);
+          // return allSonglist
+      },
+      addTask: function(text){
+        console.log(`add a new task`);
+        $http({
+              method: 'POST',
+              url: '/addTask',
+              data: {
+                taskText: text,
+              }
+          }).then(function(response) {
+            console.log(response);
+            // angular.copy(response.data, allSongList);
+          })
+      }
 
     };
 
