@@ -8,10 +8,7 @@ import com.james.utils.PasswordStorage;
 import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
@@ -41,6 +38,21 @@ public class FamilyController {
     @RequestMapping (path = "/", method = RequestMethod.GET)
     public String placeholderFrontPage (){
         return  "";
+    }
+
+    @RequestMapping(path = "/login", method = RequestMethod.POST)
+    public boolean login(@RequestBody User user, HttpSession session) throws Exception {
+        User userInDb = users.findByUserName(user.getUserName());
+        if (userInDb == null) {
+            user.setPassword(PasswordStorage.createHash(user.getPassword()));
+            users.save(user);
+        }
+        else if (!PasswordStorage.verifyPassword(user.getPassword(), userInDb.getPassword())) {
+            throw new Exception("Incorrect user information");
+        }
+
+        session.setAttribute("userName", user.getUserName());
+        return true;
     }
 
     //create page @localhost 8080/tasks
