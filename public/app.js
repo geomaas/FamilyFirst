@@ -27,9 +27,11 @@ module.exports = function(app){
 
     $scope.add = function(){
       console.log(`send task text ${$scope.taskText}`);
-      taskService.addTask();
+      taskService.addTask($scope.taskText);
     }
-
+    $scope.comment = function(){
+      console.log((`send comment text ${$scope.newComment}`));
+    }
   }]);
 };
 
@@ -83,11 +85,14 @@ module.exports = function(app){
           // console.log("allsongs arrar", allSongList);
           // return allSonglist
       },
-      addTask: function(){
+      addTask: function(text){
         console.log(`add a new task`);
         $http({
               method: 'POST',
-              url: '/new',
+              url: '/addTask',
+              data: {
+                taskText: text,
+              }
           }).then(function(response) {
             console.log(response);
             // angular.copy(response.data, allSongList);

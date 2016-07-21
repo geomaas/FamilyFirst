@@ -7,8 +7,10 @@ module.exports = function(app){
 
     $scope.add = function(){
       console.log(`send task text ${$scope.taskText}`);
-      taskService.addTask();
+      taskService.addTask($scope.taskText);
     }
-
+    $scope.comment = function(){
+      console.log((`send comment text ${$scope.newComment}`));
+    }
   }]);
 };
