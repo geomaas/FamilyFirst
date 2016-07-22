@@ -14,6 +14,7 @@ import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,8 @@ public class FamilyController {
     public Task addTask(HttpSession session, @RequestBody String taskText) {
         String userName = (String) session.getAttribute("userName");
         User user = users.findByUserName(userName);
-        Task task = new Task(user, taskText, null, null, false);
+        Instant timestamp = Instant.now();
+        Task task = new Task(user, taskText, null, null, false, timestamp);
         tasks.save(task);
         return task;
     }

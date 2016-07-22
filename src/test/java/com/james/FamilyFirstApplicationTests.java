@@ -56,9 +56,19 @@ public class FamilyFirstApplicationTests {
 //            .param("userName", "TestUser")
 //            .param("password", "testPass")
 //        );
-//
-//		System.out.println(users.count());
-//	}
+
+//        Assert.assertTrue(users.count() == 1);
+//    }
+
+	@Test
+	public void TestLogin() throws Exception {
+		System.out.println(users.count());
+		User user = new User("testname", "testPassword");
+		mockMvc.perform(
+				MockMvcRequestBuilders.post("/login"));
+
+		System.out.println(users.count());
+	}
 
 	@Test
 	public void TasksGetRouteTest() throws Exception {
