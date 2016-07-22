@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
+import java.sql.Array;
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
@@ -53,7 +54,18 @@ public class FamilyController {
     //create page @localhost 8080/tasks
     @RequestMapping (path = "/tasks", method = RequestMethod.GET)
     public ArrayList<Task> tasks (){
-        ArrayList<Task> taskList = (ArrayList<Task>) tasks.findAll();
+        ArrayList<Task> unfilteredtaskList = (ArrayList<Task>) tasks.findAll();
+        ArrayList<Task> taskList = new ArrayList<>();
+        LocalDateTime current = LocalDateTime.now();
+        for (Task task : unfilteredtaskList) {
+            LocalDateTime created = task.getTimestamp();
+            Duration thisDuration =  Duration.ofHours(12);
+            LocalDateTime endTime = (LocalDateTime) thisDuration.addTo(created);
+            if (endTime.isAfter(current)){
+                taskList.add(task);
+            }
+        }
+
         return taskList;
     }
 
