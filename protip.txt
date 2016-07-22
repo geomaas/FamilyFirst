@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-1|Be polite when making comments. 
-=======
-﻿1|Be polite when making comments. 
->>>>>>> origin/master
+﻿﻿1|Be polite when making comments.
 2|Try to incorporate activities the client may enjoy into daily routines. Having fun is healthy!
 3|Don’t Stress out! Take a moment to collect your thoughts and take a breath when agitated.
 4|Laughter helps promote healthy lung function and healing.
