@@ -57,8 +57,8 @@ public class FamilyFirstApplicationTests {
 //            .param("password", "testPass")
 //        );
 //
-//        Assert.assertTrue(users.count() == 1);
-//    }
+//		System.out.println(users.count());
+//	}
 
 	@Test
 	public void TasksGetRouteTest() throws Exception {
