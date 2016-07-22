@@ -1,8 +1,7 @@
 package com.james.entities;
 
 import javax.persistence.*;
-import javax.persistence.criteria.CriteriaBuilder;
-import java.time.Instant;
+import java.time.LocalDateTime;
 
 /**
  * Created by jamesyburr on 7/20/16.
@@ -28,12 +27,12 @@ public class Task {
     @Column(nullable = false)
     boolean hidden;
 
-    Instant timestamp;
+    LocalDateTime timestamp;
 
     public Task() {
     }
 
-    public Task(User user, String taskText, User completedByUser, String commentText, boolean hidden, Instant timestamp) {
+    public Task(User user, String taskText, User completedByUser, String commentText, boolean hidden, LocalDateTime timestamp) {
         this.taskId = taskId;
         this.user = user;
         this.taskText = taskText;
@@ -79,7 +78,7 @@ public class Task {
         this.hidden = hidden;
     }
 
-    public void setTimestamp(Instant timestamp) { this.timestamp = timestamp; }
+    public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 
-    public Instant getTimestamp() { return timestamp;}
+    public LocalDateTime getTimestamp() { return timestamp;}
 }

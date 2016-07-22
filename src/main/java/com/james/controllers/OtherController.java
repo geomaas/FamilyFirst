@@ -34,7 +34,7 @@ public class OtherController {
     @PostConstruct
     public void init() throws SQLException, FileNotFoundException, PasswordStorage.CannotPerformOperationException {
         Server.createWebServer().start();
-        parseTips("temp.csv");
+        parseTips("protip.txt");
     }
 
     public void parseTips(String fileName) throws FileNotFoundException, PasswordStorage.CannotPerformOperationException {
@@ -42,9 +42,9 @@ public class OtherController {
             File tipsFile = new File(fileName);
             Scanner fileScanner = new Scanner(tipsFile);
             while (fileScanner.hasNext()) {
-
-                String[] columns = fileScanner.nextLine().split("|");
-                ProTip tip = new ProTip(Integer.valueOf(columns[0]), columns[1]);
+                String line = fileScanner.nextLine();
+                String[] columns = line.split("\\|");
+                ProTip tip = new ProTip(columns[1]);
                 tips.save(tip);
             }
         }

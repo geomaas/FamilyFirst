@@ -8,6 +8,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tips")
 public class ProTip {
+    @GeneratedValue
     @Id
     int tipsId;
 
