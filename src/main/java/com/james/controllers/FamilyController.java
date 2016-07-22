@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
@@ -62,7 +63,9 @@ public class FamilyController {
         String userName = (String) session.getAttribute("userName");
         User user = users.findByUserName(userName);
         LocalDateTime timestamp = LocalDateTime.now();
-        Task task = new Task(user, taskText, null, null, false, timestamp);
+        Duration thisDuration =  Duration.ofHours(12);
+        LocalDateTime endTime = (LocalDateTime) thisDuration.addTo(timestamp);
+        Task task = new Task(user, taskText, null, null, false, timestamp, endTime);
         tasks.save(task);
         System.out.println(timestamp);
         return task;
