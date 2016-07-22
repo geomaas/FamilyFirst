@@ -14,22 +14,32 @@ module.exports = function(app){
               url: '/tasks',
           }).then(function(response) {
             console.log(response);
-            // angular.copy(response.data, allSongList);
+            angular.copy(response.data, allTasksList);
           })
-          // console.log("allsongs arrar", allSongList);
-          // return allSonglist
+          console.log("allTaskList array:", allTasksList);
+          return allTasksList
       },
       addTask: function(text){
         console.log(`add a new task`);
         $http({
               method: 'POST',
               url: '/addTask',
-              data: {
-                taskText: text,
-              }
+              data: text,
+
           }).then(function(response) {
             console.log(response);
-            // angular.copy(response.data, allSongList);
+          })
+      },
+      addComment: function(id,text){
+        console.log(`add a new task`);
+        $http({
+              method: 'POST',
+              url: `/comment${id}`,
+              data: text,
+
+          }).then(function(response) {
+            console.log(response);
+            // taskService.getAllTasks();
           })
       }
 

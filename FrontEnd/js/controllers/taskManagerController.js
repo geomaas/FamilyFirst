@@ -8,9 +8,16 @@ module.exports = function(app){
     $scope.add = function(){
       console.log(`send task text ${$scope.taskText}`);
       taskService.addTask($scope.taskText);
-    }
-    $scope.comment = function(){
-      console.log((`send comment text ${$scope.newComment}`));
-    }
+      taskService.getAllTasks();
+    };
+    $scope.model = {};
+    $scope.comment = function(id, index) {
+      console.log(`send comment text ${$scope.model.newComment[index]}`);
+      console.log(`task Id: ${id}`);
+      taskService.addComment(id,$scope.model.newComment[index]);
+      $scope.model.newComment[index] = "";
+      taskService.getAllTasks();
+    };
+    // thanks to @developer033 on stack overflow for the assistance with ng-repeat and ng-model usage
   }]);
 };
