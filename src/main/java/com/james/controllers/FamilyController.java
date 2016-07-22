@@ -66,6 +66,7 @@ public class FamilyController {
         Instant timestamp = Instant.now();
         Task task = new Task(user, taskText, null, null, false, timestamp);
         tasks.save(task);
+        System.out.println(timestamp);
         return task;
     }
 

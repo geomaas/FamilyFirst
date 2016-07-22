@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Entity
 @Table(name = "tips")
 public class ProTip {
-    @GeneratedValue
     @Id
     int tipsId;
 
@@ -16,6 +15,11 @@ public class ProTip {
     String tip;
 
     public ProTip() {
+    }
+
+    public ProTip(int tipsId, String tip) {
+        this.tipsId = tipsId;
+        this.tip = tip;
     }
 
     public ProTip(String tip) {
