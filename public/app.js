@@ -30,11 +30,15 @@ module.exports = function(app){
       taskService.addTask($scope.taskText);
       taskService.getAllTasks();
     };
-    $scope.model= {};
-    $scope.comment = function(index){
+    $scope.model = {};
+    $scope.comment = function(id, index) {
       console.log(`send comment text ${$scope.model.newComment[index]}`);
-      // console.log(`task Id: ${taskList[index].id}`);
+      console.log(`task Id: ${id}`);
+      taskService.addComment(id,$scope.model.newComment[index]);
+      $scope.model.newComment[index] = "";
+      taskService.getAllTasks();
     };
+    // thanks to @developer033 on stack overflow for the assistance with ng-repeat and ng-model usage
   }]);
 };
 
@@ -97,6 +101,18 @@ module.exports = function(app){
 
           }).then(function(response) {
             console.log(response);
+          })
+      },
+      addComment: function(id,text){
+        console.log(`add a new task`);
+        $http({
+              method: 'POST',
+              url: `/comment${id}`,
+              data: text,
+
+          }).then(function(response) {
+            console.log(response);
+            // taskService.getAllTasks();
           })
       }
 
