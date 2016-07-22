@@ -1,16 +1,16 @@
 <div class="titleBar">
-<h1>Care Task Manageer</h1>
+<h1>Care Task Manager</h1>
 </div>
 
 <div class="taskContainer">
-  <div ng-repeat='task in taskList track by $index' class="task">
+  <div ng-repeat="task in taskList track by $index" class="task">
     <div class="postedBy">
       <h6>{{task.user.userName}}</h6>
     </div>
     <h4>{{task.taskText}}</h4>
     <div class="comments">
-        <input ng-model="model.newComment[$index]" type="text" name="name" value="" placeholder="comments">
-        <button ng-click='comment(task.taskId)' type="button" name="button">Add</button>
+        <input ng-model="model.newComment[$index]" type="text" placeholder="comments">
+        <button ng-click='comment(task.taskId,$index)' type="button" name="button">Add</button>
       <h6>{{task.commentText}}</h6>
     </div>
   </div>

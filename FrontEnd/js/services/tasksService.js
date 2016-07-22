@@ -29,6 +29,18 @@ module.exports = function(app){
           }).then(function(response) {
             console.log(response);
           })
+      },
+      addComment: function(id,text){
+        console.log(`add a new task`);
+        $http({
+              method: 'POST',
+              url: `/comment${id}`,
+              data: text,
+
+          }).then(function(response) {
+            console.log(response);
+            // taskService.getAllTasks();
+          })
       }
 
     };
