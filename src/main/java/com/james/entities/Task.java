@@ -1,6 +1,8 @@
 package com.james.entities;
 
 import javax.persistence.*;
+import javax.persistence.criteria.CriteriaBuilder;
+import java.time.Instant;
 
 /**
  * Created by jamesyburr on 7/20/16.
@@ -26,16 +28,19 @@ public class Task {
     @Column(nullable = false)
     boolean hidden;
 
+    Instant timestamp;
+
     public Task() {
     }
 
-    public Task(User user, String taskText, User completedByUser, String commentText, boolean hidden) {
+    public Task(User user, String taskText, User completedByUser, String commentText, boolean hidden, Instant timestamp) {
         this.taskId = taskId;
         this.user = user;
         this.taskText = taskText;
         this.completedByUser = completedByUser;
         this.commentText = commentText;
         this.hidden = hidden;
+        this.timestamp = timestamp;
     }
 
     public int getTaskId() {
@@ -73,4 +78,8 @@ public class Task {
     public void setHidden(boolean hidden) {
         this.hidden = hidden;
     }
+
+    public void setTimestamp(Instant timestamp) { this.timestamp = timestamp; }
+
+    public Instant getTimestamp() { return timestamp;}
 }
