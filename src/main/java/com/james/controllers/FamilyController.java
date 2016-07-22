@@ -6,13 +6,19 @@ import com.james.services.ProTipsRepository;
 import com.james.services.TaskRepository;
 import com.james.services.UserRepository;
 import com.james.utils.PasswordStorage;
+import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
 import java.time.LocalDateTime;
+import java.io.FileNotFoundException;
+import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by jamesyburr on 7/20/16.
