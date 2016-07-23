@@ -1,5 +1,4 @@
 package com.james.entities;
-
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
