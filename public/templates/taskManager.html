@@ -7,12 +7,17 @@
     <div class="postedBy">
       <h6>{{task.user.userName}}</h6>
     </div>
+    <div class="post">
     <h4>{{task.taskText}}</h4>
-    <div class="comments">
+    <div class="newComments">
         <input ng-model="model.newComment[$index]" type="text" placeholder="comments">
         <button ng-click='comment(task.taskId,$index)' type="button" name="button">Add</button>
-      <h6>{{task.commentText}}</h6>
+        <div class="comments">
+        <h6>Comments:</h6>
+        <h6>{{task.commentText}}</h6>
+        </div>
     </div>
+  </div>
   </div>
 </div>
 
