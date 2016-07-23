@@ -38,8 +38,6 @@ public class OtherController {
     public void init() throws SQLException, FileNotFoundException, PasswordStorage.CannotPerformOperationException {
         Server.createWebServer().start();
         parseTips("protip.txt");
-
-        //tasks.save(new Task(null, "test task", null, "test comment", true, LocalDateTime.now().minusDays(5)));
     }
 
     public void parseTips(String fileName) throws FileNotFoundException, PasswordStorage.CannotPerformOperationException {
