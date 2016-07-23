@@ -10,7 +10,7 @@
   width: 70%;
   margin: -2% auto;
   border-radius: 10px;
-  border: 1px solid grey;
+  border: 1px solid #b9b9b9;
   color: black;
 }
 .loginContainer{
@@ -33,7 +33,7 @@
   padding: 4%;
 }
 .postedBy{
-  background-color: grey;
+  background-color: #b9b9b9;
   border-radius: 10px 10px 0px 0px;
   width: 40%;
   margin: 0;
@@ -42,7 +42,7 @@
 .post{
   display: inline-block;
   width: 100%;
-  background-color: grey;
+  background-color: #b9b9b9;
     border-radius: 5px;
     margin: -8px;
     padding: 2%;
@@ -52,4 +52,7 @@
   display: inline-block;
   width: 50%;
   float: right;
+}
+.addTask{
+  margin: -2%;
 }

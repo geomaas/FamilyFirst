@@ -19,5 +19,17 @@ module.exports = function(app){
       taskService.getAllTasks();
     };
     // thanks to @developer033 on stack overflow for the assistance with ng-repeat and ng-model usage
+    $scope.done = function(id){
+      console.log(`mark task as completed`);
+      $http({
+            method: 'POST',
+            url: `/complete${id}`,
+        
+        }).then(function(response) {
+          console.log(response);
+          // taskService.getAllTasks();
+        })
+    }
+
   }]);
 };
