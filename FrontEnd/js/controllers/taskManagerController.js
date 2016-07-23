@@ -1,7 +1,7 @@
 module.exports = function(app){
 
 // this handles the task manager view
-  app.controller('taskManagerController', ['$scope', 'userService', 'taskService', function($scope, userService, taskService){
+  app.controller('taskManagerController', ['$scope', 'userService', 'taskService', '$http', function($scope, userService, taskService, $http){
 
     $scope.taskList = taskService.getAllTasks();
 
@@ -24,10 +24,10 @@ module.exports = function(app){
       $http({
             method: 'POST',
             url: `/complete${id}`,
-        
+
         }).then(function(response) {
           console.log(response);
-          // taskService.getAllTasks();
+          taskService.getAllTasks();
         })
     }
 
