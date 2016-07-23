@@ -8,7 +8,8 @@
       <h6>{{task.user.userName}}</h6>
     </div>
     <div class="post">
-    <h4>{{task.taskText}}</h4>
+      <button class="done" ng-click='done(task.taskId)' type="button" name="button">Done</button>
+    <h4>{{task.taskText}} Completed by: {{task.completedByUser.userName}}</h4>
     <div class="newComments">
         <input ng-model="model.newComment[$index]" type="text" placeholder="comments">
         <button ng-click='comment(task.taskId,$index)' type="button" name="button">Add</button>
