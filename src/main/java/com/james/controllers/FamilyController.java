@@ -2,6 +2,7 @@ package com.james.controllers;
 
 import com.james.entities.Task;
 import com.james.entities.User;
+import com.james.services.ProTipsRepository;
 import com.james.services.TaskRepository;
 import com.james.services.UserRepository;
 import com.james.utils.PasswordStorage;
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
+import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
-import java.time.Instant;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +31,8 @@ public class FamilyController {
     @Autowired
     TaskRepository tasks;
 
-    //create server connection
-    @PostConstruct
-    public void init() throws SQLException, FileNotFoundException, PasswordStorage.CannotPerformOperationException {
-        Server.createWebServer().start();
-    }
+    @Autowired
+    ProTipsRepository tips;
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public boolean login(@RequestBody User user, HttpSession session) throws Exception {
@@ -62,9 +61,10 @@ public class FamilyController {
     public Task addTask(HttpSession session, @RequestBody String taskText) {
         String userName = (String) session.getAttribute("userName");
         User user = users.findByUserName(userName);
-        Instant timestamp = Instant.now();
+        LocalDateTime timestamp = LocalDateTime.now();
         Task task = new Task(user, taskText, null, null, false, timestamp);
         tasks.save(task);
+        System.out.println(timestamp);
         return task;
     }
 
