@@ -41,12 +41,13 @@
 
 .post {
   display: inline-block;
-  width: 69%;
+  width: 100%;
   background-color: grey;
   border-radius: 5px;
-  margin: -8px; }
+  margin: -8px;
+  padding: 2%; }
 
 .comments {
   display: inline-block;
-  width: 30%;
+  width: 50%;
   float: right; }
