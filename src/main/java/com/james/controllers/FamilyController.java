@@ -117,7 +117,7 @@ public class FamilyController {
         return HttpStatus.OK;
     }
 
-    @RequestMapping (path = "/Protip", method = RequestMethod.POST)
+    @RequestMapping (path = "/Protip", method = RequestMethod.GET)
     public String getRandomProtip (){
         int size = (int) tips.count();
         Random r = new Random();
