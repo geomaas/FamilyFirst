@@ -70,36 +70,36 @@ public class FamilyFirstApplicationTests {
 		System.out.println(users.count());
 	}
 
-	@Test
-	public void TasksGetRouteTest() throws Exception {
-		User testuser = new User("bob", "pass");
-		users.save(testuser);
-		Task task = new Task(testuser, "thing to do", null, null, false);
-		tasks.save(task);
+//	@Test
+//	public void TasksGetRouteTest() throws Exception {
+//		User testuser = new User("bob", "pass");
+//		users.save(testuser);
+//		Task task = new Task(testuser, "thing to do", null, null, false);
+//		tasks.save(task);
+//
+//		ResultActions ra = mockMvc.perform(
+//				MockMvcRequestBuilders.get("/tasks")
+//		);
+//		MvcResult result = ra.andReturn();
+//		MockHttpServletResponse response = result.getResponse();
+//		String json = response.getContentAsString();
+//
+//		System.out.println(json.contains("thing to do"));
+//	}
 
-		ResultActions ra = mockMvc.perform(
-				MockMvcRequestBuilders.get("/tasks")
-		);
-		MvcResult result = ra.andReturn();
-		MockHttpServletResponse response = result.getResponse();
-		String json = response.getContentAsString();
-
-		System.out.println(json.contains("thing to do"));
-	}
-
-	@Test
-	public void addTaskTest() throws Exception {
-		User testuser = new User("bob", "pass");
-		users.save(testuser);
-		Task task = new Task(testuser, "thing to do", null, null, false);
-		tasks.save(task);
-
-		ResultActions ra = mockMvc.perform(
-				MockMvcRequestBuilders.get("/tasks")
-		);
-
-		Assert.assertTrue(tasks.findOne((int) tasks.count()).getTaskText().contains("thing"));
-	}
+//	@Test
+//	public void addTaskTest() throws Exception {
+//		User testuser = new User("bob", "pass");
+//		users.save(testuser);
+//		Task task = new Task(testuser, "thing to do", null, null, false);
+//		tasks.save(task);
+//
+//		ResultActions ra = mockMvc.perform(
+//				MockMvcRequestBuilders.get("/tasks")
+//		);
+//
+//		Assert.assertTrue(tasks.findOne((int) tasks.count()).getTaskText().contains("thing"));
+//	}
 
 //	@Test
 //	public void addCommentTest() throws Exception {
