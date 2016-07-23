@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "tasks")
-@FilterDef(name = "last12Hours", parameters = @ParamDef(name = "timestamp", type = "LocalDateTime"))
-@Filter(name = "last12Hours", condition = ":timestamp >=  ")
+//@FilterDef(name = "last12Hours", parameters = @ParamDef(name = "timestamp", type = "LocalDateTime"))
+//@Filter(name = "last12Hours", condition = ":timestamp >=  ")
 public class Task {
     @GeneratedValue
     @Id
@@ -35,12 +35,12 @@ public class Task {
 
     LocalDateTime timestamp;
 
-    LocalDateTime endtime;
+    //LocalDateTime endtime;
 
     public Task() {
     }
 
-    public Task(User user, String taskText, User completedByUser, String commentText, boolean hidden, LocalDateTime timestamp, LocalDateTime endtime) {
+    public Task(User user, String taskText, User completedByUser, String commentText, boolean hidden, LocalDateTime timestamp) {
         this.taskId = taskId;
         this.user = user;
         this.taskText = taskText;
@@ -48,9 +48,8 @@ public class Task {
         this.commentText = commentText;
         this.hidden = hidden;
         this.timestamp = timestamp;
-        this.endtime = endtime;
+//        this.endtime = endtime;
     }
-
     public int getTaskId() {
         return taskId;
     }

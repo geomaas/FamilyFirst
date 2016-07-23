@@ -1,6 +1,7 @@
 package com.james.controllers;
 
 import com.james.entities.ProTip;
+import com.james.entities.Task;
 import com.james.services.ProTipsRepository;
 import com.james.services.TaskRepository;
 import com.james.services.UserRepository;
@@ -13,6 +14,7 @@ import javax.annotation.PostConstruct;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
 import java.util.Random;
 import java.util.Scanner;
 
