@@ -1,5 +1,6 @@
 package com.james.controllers;
 
+import com.james.entities.ProTip;
 import com.james.entities.Task;
 import com.james.entities.User;
 import com.james.services.ProTipsRepository;
@@ -13,12 +14,15 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
+import java.sql.Array;
+import java.time.Duration;
 import java.time.LocalDateTime;
 import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by jamesyburr on 7/20/16.
@@ -52,7 +56,18 @@ public class FamilyController {
     //create page @localhost 8080/tasks
     @RequestMapping (path = "/tasks", method = RequestMethod.GET)
     public ArrayList<Task> tasks (){
-        ArrayList<Task> taskList = (ArrayList<Task>) tasks.findAll();
+        ArrayList<Task> unfilteredtaskList = (ArrayList<Task>) tasks.findAll();
+        ArrayList<Task> taskList = new ArrayList<>();
+        LocalDateTime current = LocalDateTime.now();
+        for (Task task : unfilteredtaskList) {
+            LocalDateTime created = task.getTimestamp();
+            Duration thisDuration =  Duration.ofHours(12);
+            LocalDateTime endTime = (LocalDateTime) thisDuration.addTo(created);
+            if (endTime.isAfter(current)){
+                taskList.add(task);
+            }
+        }
+
         return taskList;
     }
 
@@ -62,9 +77,11 @@ public class FamilyController {
         String userName = (String) session.getAttribute("userName");
         User user = users.findByUserName(userName);
         LocalDateTime timestamp = LocalDateTime.now();
-        Task task = new Task(user, taskText, null, null, false, timestamp);
+        Duration thisDuration =  Duration.ofHours(12);
+        LocalDateTime endTime = (LocalDateTime) thisDuration.addTo(timestamp);
+        Task task = new Task(user, taskText, null, null, false, timestamp, endTime);
         tasks.save(task);
-        System.out.println(timestamp);
+        System.out.println(getRandomProtip());
         return task;
     }
 
@@ -72,6 +89,15 @@ public class FamilyController {
     public Task comment (@RequestBody String comment, @PathVariable int taskId) {
         Task task = tasks.findOne(taskId);
         task.setCommentText(comment);
+        tasks.save(task);
+        return task;
+    }
+
+    @RequestMapping (path = "/complete{taskId}", method = RequestMethod.POST)
+    public Task complete (HttpSession session, @PathVariable int taskId) {
+        Task task = tasks.findOne(taskId);
+        User user = users.findByUserName((String) session.getAttribute("userName"));
+        task.setCompletedByUser(user);
         tasks.save(task);
         return task;
     }
@@ -91,5 +117,13 @@ public class FamilyController {
         return HttpStatus.OK;
     }
 
-
+    @RequestMapping (path = "/Protip", method = RequestMethod.POST)
+    public String getRandomProtip (){
+        int size = (int) tips.count();
+        Random r = new Random();
+        int pick = r.nextInt((size - 1) + 1) + 1;
+        ProTip tip = tips.findOne(pick);
+        String tipText = tip.getTip();
+        return tipText;
+    }
 }
