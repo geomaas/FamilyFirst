@@ -42,4 +42,11 @@ public class ProTip {
     public void setTip(String tip) {
         this.tip = tip;
     }
+
+    @Override
+    public String toString() {
+        return "ProTip{" +
+                "tip='" + tip + '\'' +
+                '}';
+    }
 }

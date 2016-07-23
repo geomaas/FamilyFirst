@@ -1,5 +1,9 @@
 package com.james.entities;
 
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
+
 import javax.persistence.*;
 import java.time.LocalDateTime;
 
@@ -8,6 +12,8 @@ import java.time.LocalDateTime;
  */
 @Entity
 @Table(name = "tasks")
+@FilterDef(name = "last12Hours", parameters = @ParamDef(name = "timestamp", type = "LocalDateTime"))
+@Filter(name = "last12Hours", condition = ":timestamp >=  ")
 public class Task {
     @GeneratedValue
     @Id
@@ -29,10 +35,12 @@ public class Task {
 
     LocalDateTime timestamp;
 
+    LocalDateTime endtime;
+
     public Task() {
     }
 
-    public Task(User user, String taskText, User completedByUser, String commentText, boolean hidden, LocalDateTime timestamp) {
+    public Task(User user, String taskText, User completedByUser, String commentText, boolean hidden, LocalDateTime timestamp, LocalDateTime endtime) {
         this.taskId = taskId;
         this.user = user;
         this.taskText = taskText;
@@ -40,6 +48,7 @@ public class Task {
         this.commentText = commentText;
         this.hidden = hidden;
         this.timestamp = timestamp;
+        this.endtime = endtime;
     }
 
     public int getTaskId() {
