@@ -93,6 +93,15 @@ public class FamilyController {
         return task;
     }
 
+    @RequestMapping (path = "/complete{taskId}", method = RequestMethod.POST)
+    public Task complete (HttpSession session, @PathVariable int taskId) {
+        Task task = tasks.findOne(taskId);
+        User user = users.findByUserName((String) session.getAttribute("userName"));
+        task.setCompletedByUser(user);
+        tasks.save(task);
+        return task;
+    }
+
     @RequestMapping (path = "/hide{taskId}", method = RequestMethod.POST)
     public Task hide (@PathVariable int taskId) {
         Task task = tasks.findOne(taskId);
@@ -117,6 +126,4 @@ public class FamilyController {
         String tipText = tip.getTip();
         return tipText;
     }
-
-
 }
