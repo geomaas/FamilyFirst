@@ -56,19 +56,19 @@ public class FamilyController {
     //create page @localhost 8080/tasks
     @RequestMapping (path = "/tasks", method = RequestMethod.GET)
     public ArrayList<Task> tasks (){
-        ArrayList<Task> unfilteredtaskList = (ArrayList<Task>) tasks.findAll();
-        ArrayList<Task> taskList = new ArrayList<>();
-        LocalDateTime current = LocalDateTime.now();
-        for (Task task : unfilteredtaskList) {
-            LocalDateTime created = task.getTimestamp();
-            Duration thisDuration =  Duration.ofHours(12);
-            LocalDateTime endTime = (LocalDateTime) thisDuration.addTo(created);
-            if (endTime.isAfter(current)){
-                taskList.add(task);
-            }
-        }
+//        ArrayList<Task> unfilteredtaskList = (ArrayList<Task>) tasks.findAll();
+//        ArrayList<Task> taskList = new ArrayList<>();
+//        LocalDateTime current = LocalDateTime.now();
+//        for (Task task : unfilteredtaskList) {
+//            LocalDateTime created = task.getTimestamp();
+//            Duration thisDuration =  Duration.ofHours(12);
+//            LocalDateTime endTime = (LocalDateTime) thisDuration.addTo(created);
+//            if (endTime.isAfter(current)){
+//                taskList.add(task);
+//            }
+//        }
 
-        return taskList;
+        return (ArrayList<Task>) tasks.findByTimestampIsGreaterThan(LocalDateTime.now().minusHours(12));
     }
 
     //add a task
@@ -77,9 +77,7 @@ public class FamilyController {
         String userName = (String) session.getAttribute("userName");
         User user = users.findByUserName(userName);
         LocalDateTime timestamp = LocalDateTime.now();
-        Duration thisDuration =  Duration.ofHours(12);
-        LocalDateTime endTime = (LocalDateTime) thisDuration.addTo(timestamp);
-        Task task = new Task(user, taskText, null, null, false, timestamp, endTime);
+        Task task = new Task(user, taskText, null, null, false, timestamp);
         tasks.save(task);
         System.out.println(getRandomProtip());
         return task;
@@ -119,10 +117,11 @@ public class FamilyController {
 
     @RequestMapping (path = "/Protip", method = RequestMethod.GET)
     public String getRandomProtip (){
-        int size = (int) tips.count();
-        Random r = new Random();
-        int pick = r.nextInt((size - 1) + 1) + 1;
-        ProTip tip = tips.findOne(pick);
+//        int size = (int) tips.count();
+//        Random r = new Random();
+//        int pick = r.nextInt((size - 1) + 1) + 1;
+//        ProTip tip = tips.findOne(pick);
+        ProTip tip = tips.randomTip().iterator().next();
         String tipText = tip.getTip();
         return tipText;
     }
