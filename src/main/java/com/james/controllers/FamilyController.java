@@ -54,35 +54,32 @@ public class FamilyController {
     }
 
     //create page @localhost 8080/tasks
+    //filter tasks created >12hr earlier
+    //send filtered list to front-end
     @RequestMapping (path = "/tasks", method = RequestMethod.GET)
     public ArrayList<Task> tasks (){
-//        ArrayList<Task> unfilteredtaskList = (ArrayList<Task>) tasks.findAll();
-//        ArrayList<Task> taskList = new ArrayList<>();
-//        LocalDateTime current = LocalDateTime.now();
-//        for (Task task : unfilteredtaskList) {
-//            LocalDateTime created = task.getTimestamp();
-//            Duration thisDuration =  Duration.ofHours(12);
-//            LocalDateTime endTime = (LocalDateTime) thisDuration.addTo(created);
-//            if (endTime.isAfter(current)){
-//                taskList.add(task);
-//            }
-//        }
-
         return (ArrayList<Task>) tasks.findByTimestampIsGreaterThan(LocalDateTime.now().minusHours(12));
     }
 
     //add a task
+    //get user info from session
+    //set current time
+    //create new task object
+    //save to table
+    //return new task to front-end
     @RequestMapping (path = "/addTask", method = RequestMethod.POST)
     public Task addTask(HttpSession session, @RequestBody String taskText) {
         String userName = (String) session.getAttribute("userName");
         User user = users.findByUserName(userName);
         LocalDateTime timestamp = LocalDateTime.now();
-        Task task = new Task(user, taskText, null, null, false, timestamp);
+        Task task = new Task(user, taskText, null, null, timestamp);
         tasks.save(task);
-        System.out.println(getRandomProtip());
         return task;
     }
 
+    //get task id from front-end via query param
+    //set comment text in table
+    //return task to front-end
     @RequestMapping (path = "/comment{taskId}", method = RequestMethod.POST)
     public Task comment (@RequestBody String comment, @PathVariable int taskId) {
         Task task = tasks.findOne(taskId);
@@ -91,6 +88,9 @@ public class FamilyController {
         return task;
     }
 
+    //get task id from front-end via query param
+    //get user from session
+    //set completed by user id in table
     @RequestMapping (path = "/complete{taskId}", method = RequestMethod.POST)
     public Task complete (HttpSession session, @PathVariable int taskId) {
         Task task = tasks.findOne(taskId);
@@ -100,27 +100,16 @@ public class FamilyController {
         return task;
     }
 
-    @RequestMapping (path = "/hide{taskId}", method = RequestMethod.POST)
-    public Task hide (@PathVariable int taskId) {
-        Task task = tasks.findOne(taskId);
-        task.setHidden(true);
-        tasks.save(task);
-        return task;
-    }
-
+    //currently no logout button
+    //logout should invalidate the session
     @RequestMapping (path = "/logout", method = RequestMethod.POST)
     public HttpStatus logout(HttpSession session) {
         session.invalidate();
-
         return HttpStatus.OK;
     }
 
     @RequestMapping (path = "/Protip", method = RequestMethod.GET)
     public String getRandomProtip (){
-//        int size = (int) tips.count();
-//        Random r = new Random();
-//        int pick = r.nextInt((size - 1) + 1) + 1;
-//        ProTip tip = tips.findOne(pick);
         ProTip tip = tips.randomTip().iterator().next();
         String tipText = tip.getTip();
         return tipText;
