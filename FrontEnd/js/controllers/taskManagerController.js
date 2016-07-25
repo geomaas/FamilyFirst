@@ -7,16 +7,31 @@ module.exports = function(app){
 
     $scope.add = function(){
       console.log(`send task text ${$scope.taskText}`);
-      taskService.addTask($scope.taskText);
-      taskService.getAllTasks();
+      console.log(`add a new task`);
+      $http({
+            method: 'POST',
+            url: '/addTask',
+            data: $scope.taskText,
+
+        }).then(function(response) {
+          console.log(response);
+            taskService.getAllTasks();
+        })
     };
     $scope.model = {};
     $scope.comment = function(id, index) {
       console.log(`send comment text ${$scope.model.newComment[index]}`);
       console.log(`task Id: ${id}`);
-      taskService.addComment(id,$scope.model.newComment[index]);
-      $scope.model.newComment[index] = "";
-      taskService.getAllTasks();
+      $http({
+            method: 'POST',
+            url: `/comment${id}`,
+            data: $scope.model.newComment[index],
+
+        }).then(function(response) {
+          console.log(response);
+          $scope.model.newComment[index] = "";
+          taskService.getAllTasks();
+        })
     };
     // thanks to @developer033 on stack overflow for the assistance with ng-repeat and ng-model usage
     $scope.done = function(id){

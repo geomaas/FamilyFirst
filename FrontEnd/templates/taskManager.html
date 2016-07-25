@@ -1,5 +1,5 @@
 <div class="titleBar">
-<h1>Care Task Manager</h1>
+<img src="images/banner.png" alt="" />
 </div>
 
 <div class="taskContainer">
@@ -26,5 +26,9 @@
   <div class="addTask">
     <input ng-model='taskText' type="text" name="task" value="" placeholder="add a new task">
     <button ng-click='add()' type="button" name="add">Add Task</button>
+  </div>
+  <div class="proTip">
+    <img src="#" alt="LightBulb" />
+    {{tip}}
   </div>
 </div>
