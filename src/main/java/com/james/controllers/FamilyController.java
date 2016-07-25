@@ -1,8 +1,10 @@
 package com.james.controllers;
 
+import com.james.entities.Medication;
 import com.james.entities.ProTip;
 import com.james.entities.Task;
 import com.james.entities.User;
+import com.james.services.MedicationRepository;
 import com.james.services.ProTipsRepository;
 import com.james.services.TaskRepository;
 import com.james.services.UserRepository;
@@ -37,6 +39,9 @@ public class FamilyController {
 
     @Autowired
     ProTipsRepository tips;
+
+    @Autowired
+    MedicationRepository medications;
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public boolean login(@RequestBody User user, HttpSession session) throws Exception {
@@ -109,9 +114,21 @@ public class FamilyController {
     }
 
     @RequestMapping (path = "/Protip", method = RequestMethod.GET)
-    public String getRandomProtip (){
+    public ProTip getRandomProtip (){
         ProTip tip = tips.randomTip().iterator().next();
-        String tipText = tip.getTip();
-        return tipText;
+        return tip;
     }
+
+    //create page @localhost 8080/meds
+    //send array list of all meds to front-end
+    @RequestMapping (path = "/meds", method = RequestMethod.GET)
+    public ArrayList<Medication> meds (){
+        ArrayList<Medication> medsList= (ArrayList<Medication>) medications.findAll();
+        return medsList;
+    }
+
+    //post route to add a medication to the medications table
+    //triggered by add button on /meds page
+//    @RequestMapping (path = "/addMed", method = RequestMethod.POST)
+//    public Medication addMed (@RequestBody String medName, )
 }
