@@ -25,18 +25,18 @@ module.exports = function(app){
 
     $scope.taskList = taskService.getAllTasks();
     $scope.tip = taskService.getTip();
-
+    $scope.user = userService.getCurrentUser();
 
     $scope.add = function(){
-      // console.log(`send task text ${$scope.taskText}`);
-      // console.log(`add a new task`);
+      console.log(`send task text ${$scope.taskText}`);
+      console.log(`add a new task`);
       $http({
             method: 'POST',
             url: '/addTask',
             data: $scope.taskText,
 
         }).then(function(response) {
-          // console.log(response);
+          console.log(response);
             taskService.getAllTasks();
         })
     };
@@ -65,7 +65,7 @@ module.exports = function(app){
             url: `/complete${id}`,
 
         }).then(function(response) {
-          console.log(response);
+          // console.log(response);
           taskService.getAllTasks();
         })
     }
@@ -112,29 +112,29 @@ module.exports = function(app){
 
     return {
       getAllTasks: function(){
-        console.log(`get tasks from server`);
+        // console.log(`get tasks from server`);
         $http({
               method: 'GET',
               url: '/tasks',
           }).then(function(response) {
-            console.log(response);
+            // console.log(response);
             angular.copy(response.data, allTasksList);
           })
-          console.log("allTaskList array:", allTasksList);
+          // console.log("allTaskList array:", allTasksList);
           return allTasksList
       },
 
       getTip: function(){
-        console.log('get a tip');
+        // console.log('get a tip');
         $http({
               method: 'GET',
               url: `/Protip`,
 
 
           }).then(function(response) {
-            console.log(response);
+            // console.log(response);
             angular.copy(response.data, allTips)
-            console.log(allTips);
+            // console.log(allTips);
           })
           return allTips
       },
@@ -149,13 +149,13 @@ module.exports = function(app){
 
 // this service will handle the user data
   app.factory('userService', ['$http','$location', function($http, $location){
-    
+  let currentUser = {};
 
 
 
     return {
       serverLogin: function(user,pass){
-        console.log(`make a http request with ${user} and ${pass}`);
+        // console.log(`make a http request with ${user} and ${pass}`);
         $http({
               method: 'POST',
               url: '/login',
@@ -164,13 +164,18 @@ module.exports = function(app){
                 password: pass,
               }
           }).then(function(response) {
-            console.log("here is whats coming back", response );
-            if(response.data === true){
+            // console.log("here is whats coming back", response );
+            if(response.data.userName === user){
+              angular.copy(response.data, currentUser);
               $location.path('/tasks');
             }
-
+            return currentUser
           })
       },
+      getCurrentUser: function() {
+      console.log("user info", currentUser);
+      return currentUser
+    },
 
 
 
