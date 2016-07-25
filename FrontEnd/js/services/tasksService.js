@@ -8,29 +8,29 @@ module.exports = function(app){
 
     return {
       getAllTasks: function(){
-        console.log(`get tasks from server`);
+        // console.log(`get tasks from server`);
         $http({
               method: 'GET',
               url: '/tasks',
           }).then(function(response) {
-            console.log(response);
+            // console.log(response);
             angular.copy(response.data, allTasksList);
           })
-          console.log("allTaskList array:", allTasksList);
+          // console.log("allTaskList array:", allTasksList);
           return allTasksList
       },
 
       getTip: function(){
-        console.log('get a tip');
+        // console.log('get a tip');
         $http({
               method: 'GET',
               url: `/Protip`,
 
 
           }).then(function(response) {
-            console.log(response);
+            // console.log(response);
             angular.copy(response.data, allTips)
-            console.log(allTips);
+            // console.log(allTips);
           })
           return allTips
       },

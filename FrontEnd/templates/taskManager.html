@@ -1,36 +1,50 @@
 <div class="titleBar">
-<img src="images/banner.png" alt="" />
+    <img src="images/banner.png" alt="" />
 
-<a href="#/login">logout</a>
+    <a href="#/login">logout</a>
+    <h4>Welcome {{user.userName}}!</h4>
 </div>
 
 <div class="taskContainer">
-  <div ng-repeat="task in taskList track by $index" class="task">
-    <div class="postedBy">
-      <h6>{{task.user.userName}} {{task.timestamp.dayOfWeek}}</h6>
-    </div>
-    <div class="post">
-      <button class="done" ng-click='done(task.taskId)' type="button" name="button">Done</button>
-    <h4>{{task.taskText}} Completed by: {{task.completedByUser.userName}}</h4>
-    <div class="newComments">
-        <input ng-model="model.newComment[$index]" type="text" placeholder="comments">
-        <button ng-click='comment(task.taskId,$index)' type="button" name="button">Add</button>
-        <div class="comments">
-        <h6>Comments:</h6>
-        <h6>{{task.commentText}}</h6>
+    <div ng-repeat="task in taskList track by $index" class="task">
+        <div class="postedBy">
+            <h6>{{task.timestamp.dayOfWeek}}</h6>
+        </div>
+        <div class="post">
+            <div class="done">
+                <button class="done" ng-click='done(task.taskId)' type="button" name="button">Done</button>
+            </div>
+            <div class="mainTask">
+                <div class="actualTask">
+                    <h4>{{task.taskText}}</h4>
+                </div>
+                <div class="comments">
+                    <h6>Comments:</h6>
+                    <h6>{{task.commentText}}</h6>
+                </div>
+
+                <div class="newComments">
+                    <input ng-model="model.newComment[$index]" type="text" placeholder="comments">
+                    <button ng-click='comment(task.taskId,$index)' type="button" name="button">Add</button>
+                </div>
+
+
+            </div>
+            <div class="created">
+              <h6>Created By: {{task.user.userName}}</h6>
+              <h6>Completed By: {{task.completedByUser.userName}}</h6>
+            </div>
         </div>
     </div>
-  </div>
-  </div>
 </div>
 
 <div class="footer">
-  <div class="addTask">
-    <input ng-model='taskText' type="text" name="task" value="" placeholder="add a new task">
-    <button ng-click='add()' type="button" name="add">Add Task</button>
-  </div>
-  <div class="proTip">
-    <img src="images/lightbulb.png" alt="LightBulb" />
-    <h6>{{tip.tip}}</h6>
-  </div>
+    <div class="addTask">
+        <input ng-model='taskText' type="text" name="task" value="" placeholder="add a new task">
+        <button ng-click='add()' type="button" name="add">Add Task</button>
+    </div>
+    <div class="proTip">
+        <img src="images/lightbulb.png" alt="LightBulb" />
+        <h6>{{tip.tip}}</h6>
+    </div>
 </div>

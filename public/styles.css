@@ -4,11 +4,14 @@ main {
 .titleBar img {
   width: 100%; }
 
+.titleBar a {
+  float: right; }
+
 .tagLine {
   text-align: center;
   background-color: #F0DE73;
   width: 70%;
-  margin: -2% auto;
+  margin: 0 auto;
   border-radius: 10px;
   border: 1px solid #b9b9b9;
   color: black; }
@@ -48,10 +51,28 @@ main {
   padding: 2%;
   box-shadow: 10px 10px 5px #888888; }
 
-.comments {
+.done {
+  vertical-align: top;
   display: inline-block;
-  width: 50%;
-  float: right; }
+  width: 10%; }
+
+.mainTask {
+  vertical-align: top;
+  display: inline-block;
+  width: 65%; }
+
+.created {
+  vertical-align: top;
+  display: inline-block;
+  width: 20%; }
+
+.newComments button {
+  display: inline-block;
+  width: 20%; }
+
+.newComments input {
+  display: inline-block;
+  width: 70%; }
 
 .addTask {
   width: 48%;
