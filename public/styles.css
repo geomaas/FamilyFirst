@@ -62,5 +62,10 @@
 
 .proTip {
   width: 48%;
+  margin: -4%;
   display: inline-block;
   float: right; }
+
+.proTip img {
+  width: 10%;
+  display: inline-block; }

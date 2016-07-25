@@ -133,7 +133,8 @@ module.exports = function(app){
 
           }).then(function(response) {
             console.log(response);
-            angular.copy(response, allTips)
+            angular.copy(response.data, allTips)
+            console.log(allTips);
           })
           return allTips
       },

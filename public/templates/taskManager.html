@@ -5,7 +5,7 @@
 <div class="taskContainer">
   <div ng-repeat="task in taskList track by $index" class="task">
     <div class="postedBy">
-      <h6>{{task.user.userName}}</h6>
+      <h6>{{task.user.userName}} {{task.timestamp.dayOfWeek}}</h6>
     </div>
     <div class="post">
       <button class="done" ng-click='done(task.taskId)' type="button" name="button">Done</button>
@@ -29,6 +29,6 @@
   </div>
   <div class="proTip">
     <img src="images/lightbulb.png" alt="LightBulb" />
-    <h5>{{tip}}</h5>
+    <h5>{{tip.tip}}</h5>
   </div>
 </div>
