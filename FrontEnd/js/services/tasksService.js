@@ -3,7 +3,7 @@ module.exports = function(app){
 // this service will handle the task data
   app.factory('taskService', ['$http','$location', function($http, $location){
       let allTasksList = [];
-
+      let allTips = [];
 
 
     return {
@@ -19,29 +19,20 @@ module.exports = function(app){
           console.log("allTaskList array:", allTasksList);
           return allTasksList
       },
-      addTask: function(text){
-        console.log(`add a new task`);
+
+      getTip: function(){
+        console.log('get a tip');
         $http({
-              method: 'POST',
-              url: '/addTask',
-              data: text,
+              method: 'GET',
+              url: `/Protip`,
+
 
           }).then(function(response) {
             console.log(response);
+            angular.copy(response, allTips)
           })
+          return allTips
       },
-      addComment: function(id,text){
-        console.log(`add a new task`);
-        $http({
-              method: 'POST',
-              url: `/comment${id}`,
-              data: text,
-
-          }).then(function(response) {
-            console.log(response);
-            // taskService.getAllTasks();
-          })
-      }
 
     };
 

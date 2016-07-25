@@ -4,31 +4,35 @@ module.exports = function(app){
   app.controller('taskManagerController', ['$scope', 'userService', 'taskService', '$http', function($scope, userService, taskService, $http){
 
     $scope.taskList = taskService.getAllTasks();
+    $scope.tip = taskService.getTip();
+
 
     $scope.add = function(){
-      console.log(`send task text ${$scope.taskText}`);
-      console.log(`add a new task`);
+      // console.log(`send task text ${$scope.taskText}`);
+      // console.log(`add a new task`);
       $http({
             method: 'POST',
             url: '/addTask',
             data: $scope.taskText,
 
         }).then(function(response) {
-          console.log(response);
+          // console.log(response);
             taskService.getAllTasks();
         })
     };
+
+    // comments section:
     $scope.model = {};
     $scope.comment = function(id, index) {
-      console.log(`send comment text ${$scope.model.newComment[index]}`);
-      console.log(`task Id: ${id}`);
+      // console.log(`send comment text ${$scope.model.newComment[index]}`);
+      // console.log(`task Id: ${id}`);
       $http({
             method: 'POST',
             url: `/comment${id}`,
             data: $scope.model.newComment[index],
 
         }).then(function(response) {
-          console.log(response);
+          // console.log(response);
           $scope.model.newComment[index] = "";
           taskService.getAllTasks();
         })

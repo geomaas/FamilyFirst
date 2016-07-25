@@ -24,31 +24,35 @@ module.exports = function(app){
   app.controller('taskManagerController', ['$scope', 'userService', 'taskService', '$http', function($scope, userService, taskService, $http){
 
     $scope.taskList = taskService.getAllTasks();
+    $scope.tip = taskService.getTip();
+
 
     $scope.add = function(){
-      console.log(`send task text ${$scope.taskText}`);
-      console.log(`add a new task`);
+      // console.log(`send task text ${$scope.taskText}`);
+      // console.log(`add a new task`);
       $http({
             method: 'POST',
             url: '/addTask',
             data: $scope.taskText,
 
         }).then(function(response) {
-          console.log(response);
+          // console.log(response);
             taskService.getAllTasks();
         })
     };
+
+    // comments section:
     $scope.model = {};
     $scope.comment = function(id, index) {
-      console.log(`send comment text ${$scope.model.newComment[index]}`);
-      console.log(`task Id: ${id}`);
+      // console.log(`send comment text ${$scope.model.newComment[index]}`);
+      // console.log(`task Id: ${id}`);
       $http({
             method: 'POST',
             url: `/comment${id}`,
             data: $scope.model.newComment[index],
 
         }).then(function(response) {
-          console.log(response);
+          // console.log(response);
           $scope.model.newComment[index] = "";
           taskService.getAllTasks();
         })
@@ -103,7 +107,7 @@ module.exports = function(app){
 // this service will handle the task data
   app.factory('taskService', ['$http','$location', function($http, $location){
       let allTasksList = [];
-
+      let allTips = [];
 
 
     return {
@@ -119,29 +123,20 @@ module.exports = function(app){
           console.log("allTaskList array:", allTasksList);
           return allTasksList
       },
-      addTask: function(text){
-        console.log(`add a new task`);
+
+      getTip: function(){
+        console.log('get a tip');
         $http({
-              method: 'POST',
-              url: '/addTask',
-              data: text,
+              method: 'GET',
+              url: `/Protip`,
+
 
           }).then(function(response) {
             console.log(response);
+            angular.copy(response, allTips)
           })
+          return allTips
       },
-      addComment: function(id,text){
-        console.log(`add a new task`);
-        $http({
-              method: 'POST',
-              url: `/comment${id}`,
-              data: text,
-
-          }).then(function(response) {
-            console.log(response);
-            // taskService.getAllTasks();
-          })
-      }
 
     };
 
