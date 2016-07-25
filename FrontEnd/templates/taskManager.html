@@ -1,11 +1,11 @@
 <div class="titleBar">
-<h1>Care Task Manager</h1>
+<img src="images/banner.png" alt="" />
 </div>
 
 <div class="taskContainer">
   <div ng-repeat="task in taskList track by $index" class="task">
     <div class="postedBy">
-      <h6>{{task.user.userName}}</h6>
+      <h6>{{task.user.userName}} {{task.timestamp.dayOfWeek}}</h6>
     </div>
     <div class="post">
       <button class="done" ng-click='done(task.taskId)' type="button" name="button">Done</button>
@@ -26,5 +26,9 @@
   <div class="addTask">
     <input ng-model='taskText' type="text" name="task" value="" placeholder="add a new task">
     <button ng-click='add()' type="button" name="add">Add Task</button>
+  </div>
+  <div class="proTip">
+    <img src="images/lightbulb.png" alt="LightBulb" />
+    <h5>{{tip.tip}}</h5>
   </div>
 </div>

@@ -1,8 +1,5 @@
-.titleBar {
-  background-color: #0B80D9;
-  color: white;
-  text-align: center;
-  height: 6em; }
+.titleBar img {
+  width: 100%; }
 
 .tagLine {
   text-align: center;
@@ -53,10 +50,22 @@
   float: right; }
 
 .addTask {
-  margin: -2%; }
+  width: 48%;
+  margin: -2%;
+  display: inline-block; }
 
 .done {
   border: 2px solid black;
   border-radius: 5px;
   display: inline-block;
   background-color: white; }
+
+.proTip {
+  width: 48%;
+  margin: -4%;
+  display: inline-block;
+  float: right; }
+
+.proTip img {
+  width: 10%;
+  display: inline-block; }
