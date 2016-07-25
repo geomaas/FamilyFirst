@@ -129,6 +129,17 @@ public class FamilyController {
 
     //post route to add a medication to the medications table
     //triggered by add button on /meds page
-//    @RequestMapping (path = "/addMed", method = RequestMethod.POST)
-//    public Medication addMed (@RequestBody String medName, )
+    @RequestMapping (path = "/addMed", method = RequestMethod.POST)
+    public Medication addMed (@RequestBody Medication med){
+        medications.save(med);
+        return med;
+    }
+
+    @RequestMapping (path = "/given{medId}", method = RequestMethod.POST)
+    public Medication given (@PathVariable int medId){
+        Medication med = medications.findOne(medId);
+        med.setLastGiven(LocalDateTime.now());
+        medications.save(med);
+        return med;
+    }
 }
