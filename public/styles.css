@@ -1,3 +1,6 @@
+main {
+  background-color: rgba(173, 206, 230, 0.41); }
+
 .titleBar img {
   width: 100%; }
 
@@ -26,7 +29,7 @@
 
 .footer {
   background-color: #0B80D9;
-  height: 7em;
+  height: 10em;
   padding: 4%; }
 
 .postedBy {
@@ -42,7 +45,8 @@
   background-color: #b9b9b9;
   border-radius: 5px;
   margin: -8px;
-  padding: 2%; }
+  padding: 2%;
+  box-shadow: 10px 10px 5px #888888; }
 
 .comments {
   display: inline-block;
@@ -51,8 +55,13 @@
 
 .addTask {
   width: 48%;
-  margin: -2%;
-  display: inline-block; }
+  margin: 0 auto;
+  display: inline-block;
+  background-color: gray;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px #383737; }
 
 .done {
   border: 2px solid black;
@@ -62,9 +71,14 @@
 
 .proTip {
   width: 48%;
-  margin: -4%;
+  margin: 0 auto;
+  float: right;
   display: inline-block;
-  float: right; }
+  background-color: gray;
+  padding: 1%;
+  border-radius: 10px;
+  border: 1px solid black;
+  box-shadow: 10px 10px 5px #383737; }
 
 .proTip img {
   width: 10%;
