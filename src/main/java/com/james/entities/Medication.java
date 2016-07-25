@@ -1,6 +1,7 @@
 package com.james.entities;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 /**
  * Created by user on 7/25/16.
@@ -23,14 +24,17 @@ public class Medication {
 
     String instructions;
 
+    LocalDateTime lastGiven;
+
     public Medication() {
     }
 
-    public Medication(String medName, String dose, int frequency, String instructions) {
+    public Medication(String medName, String dose, int frequency, String instructions, LocalDateTime lastGiven) {
         this.medName = medName;
         this.dose = dose;
         this.frequency = frequency;
         this.instructions = instructions;
+        this.lastGiven = lastGiven;
     }
 
     public int getMedId() {
@@ -71,5 +75,13 @@ public class Medication {
 
     public void setInstructions(String instructions) {
         this.instructions = instructions;
+    }
+
+    public LocalDateTime getLastGiven() {
+        return lastGiven;
+    }
+
+    public void setLastGiven(LocalDateTime lastGiven) {
+        this.lastGiven = lastGiven;
     }
 }
