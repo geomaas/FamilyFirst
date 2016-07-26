@@ -14,6 +14,9 @@ module.exports = function(app){
               url: '/tasks',
           }).then(function(response) {
             // console.log(response);
+            if (response.data.completedBy !== null) {
+              document.getElementById("check").setAttribute('checked')
+            }
             angular.copy(response.data, allTasksList);
           })
           // console.log("allTaskList array:", allTasksList);

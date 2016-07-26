@@ -68,8 +68,12 @@ module.exports = function(app){
           // console.log(response);
           taskService.getAllTasks();
         })
-    }
-
+    };
+    var mark = function(){
+      if (completedBy !== null) {
+        document.getElementById("check").setAttribute('checked')
+      }
+    };
   }]);
 };
 
@@ -118,6 +122,9 @@ module.exports = function(app){
               url: '/tasks',
           }).then(function(response) {
             // console.log(response);
+            if (response.data.completedBy !== null) {
+              document.getElementById("check").setAttribute('checked')
+            }
             angular.copy(response.data, allTasksList);
           })
           // console.log("allTaskList array:", allTasksList);

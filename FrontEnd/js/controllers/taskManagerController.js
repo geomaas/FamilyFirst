@@ -48,7 +48,11 @@ module.exports = function(app){
           // console.log(response);
           taskService.getAllTasks();
         })
-    }
-
+    };
+    var mark = function(){
+      if (completedBy !== null) {
+        document.getElementById("check").setAttribute('checked')
+      }
+    };
   }]);
 };
