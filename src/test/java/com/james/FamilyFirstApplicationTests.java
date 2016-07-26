@@ -1,7 +1,8 @@
 package com.james;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.james.controllers.FamilyController;
+import com.james.entities.ProTip;
 import com.james.entities.Task;
 import com.james.entities.User;
 import com.james.services.MedicationRepository;
@@ -10,12 +11,13 @@ import com.james.services.TaskRepository;
 import com.james.services.UserRepository;
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.mock.web.MockHttpServletResponse;
-import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -23,18 +25,16 @@ import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = FamilyFirstApplication.class)
 @WebAppConfiguration
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class FamilyFirstApplicationTests {
 
 	@Autowired
@@ -60,7 +60,7 @@ public class FamilyFirstApplicationTests {
 	}
 
 	@Test
-	public void TestLogin() throws Exception {
+	public void aTestLogin() throws Exception {
         int oldCount = (int) users.count();
         User user = new User("newtestname", "newtestPassword");
         ObjectMapper objectMapper = new ObjectMapper();
@@ -77,7 +77,7 @@ public class FamilyFirstApplicationTests {
 
 
 	@Test
-	public void TasksGetRouteTest() throws Exception {
+	public void bTasksGetRouteTest() throws Exception {
 		User testuser = new User("bob", "pass");
 		users.save(testuser);
 		Task task = new Task(testuser, "thing to do", null, null, LocalDateTime.now());
@@ -94,7 +94,7 @@ public class FamilyFirstApplicationTests {
 	}
 
     @Test
-    public void addTaskTest() throws Exception {
+    public void caddTaskTest() throws Exception {
         int oldCount = (int) tasks.count();
         User taskuser = new User("newtestname", "newtestPassword");
         String body = new String ("I like peanuts");
@@ -108,13 +108,12 @@ public class FamilyFirstApplicationTests {
         int newCount = (int) tasks.count();
 
         Assert.assertTrue(newCount == oldCount + 1);
-        Assert.assertTrue(tasks.findByTaskText("I like peanuts") != null);
+        Assert.assertTrue(tasks.findFirstByTaskText("I like peanuts") != null);
     }
 
 	@Test
-	public void addCommentTest() throws Exception {
-		User testuser = new User("bob", "pass");
-		users.save(testuser);
+	public void daddCommentTest() throws Exception {
+		User testuser = users.findFirstByUserName("bob");
 		Task task = new Task(testuser, "thing to do", null, null, LocalDateTime.now());
 		tasks.save(task);
 
@@ -132,23 +131,30 @@ public class FamilyFirstApplicationTests {
     }
 
     @Test
-    public void completeTest() throws Exception {
-        MockHttpSession session = new MockHttpSession();
-        session.setAttribute("userName", "bob");
-        User testuser = new User("bob", "pass");
-        users.save(testuser);
-        Task task = new Task(testuser, "thing to do", null, null, LocalDateTime.now());
-        tasks.save(task);
+    public void ecompleteTest() throws Exception {
+        User testuser = users.findFirstByUserName("bob");
+        Task task = tasks.findFirstByTaskText("thing to do");
 
-        ResultActions ra = mockMvc.perform(
+        mockMvc.perform(
                 MockMvcRequestBuilders.post("/complete" + task.getTaskId())
+                    .sessionAttr("userName", "bob")
         );
 
-        MvcResult result= ra.andReturn();
+        Assert.assertTrue(tasks.findOne(task.getTaskId()).getCompletedByUser() != null);
+    }
+
+    @Test
+    public void fProtipsTest() throws Exception {
+        ResultActions ra = mockMvc.perform(
+                MockMvcRequestBuilders.get("/Protip")
+        );
+        MvcResult result = ra.andReturn();
         MockHttpServletResponse response = result.getResponse();
         String json = response.getContentAsString();
 
-        System.out.println(json);
+        ObjectMapper om = new ObjectMapper();
+        ProTip pt = om.readValue(json, ProTip.class);
 
+        Assert.assertTrue(pt.getTip().equals(tips.findOne(pt.getTipsId()).getTip()));
     }
 }

@@ -11,5 +11,5 @@ import java.time.LocalDateTime;
  */
 public interface TaskRepository extends CrudRepository<Task, Integer> {
     public Iterable<Task> findByTimestampIsGreaterThan(LocalDateTime minDate);
-    public Task findByTaskText(String taskText);
+    public Task findFirstByTaskText(String taskText);
 }
