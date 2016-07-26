@@ -18,9 +18,6 @@ public class User {
     @Column(nullable = false)
     String password;
 
-    @ManyToOne
-    User patient;
-
     public User() {
     }
 
