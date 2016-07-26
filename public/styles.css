@@ -5,7 +5,8 @@ main {
   width: 100%; }
 
 .titleBar a {
-  float: right; }
+  float: right;
+  margin: 0 2%; }
 
 .tagLine {
   text-align: center;
@@ -33,7 +34,7 @@ main {
 .footer {
   background-color: #0B80D9;
   height: 10em;
-  padding: 4%; }
+  padding: 1%; }
 
 .postedBy {
   background-color: #b9b9b9;
@@ -54,7 +55,8 @@ main {
 .done {
   vertical-align: top;
   display: inline-block;
-  width: 10%; }
+  width: 10%;
+  padding: 2%; }
 
 .mainTask {
   vertical-align: top;
@@ -84,11 +86,17 @@ main {
   border: 1px solid black;
   box-shadow: 10px 10px 5px #383737; }
 
-.done {
-  border: 2px solid black;
-  border-radius: 5px;
-  display: inline-block;
-  background-color: white; }
+.done input[type=checkbox] {
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(2);
+  /* IE */
+  -moz-transform: scale(2);
+  /* FF */
+  -webkit-transform: scale(2);
+  /* Safari and Chrome */
+  -o-transform: scale(2);
+  /* Opera */
+  padding: 10px; }
 
 .proTip {
   width: 48%;
