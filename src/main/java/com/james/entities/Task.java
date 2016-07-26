@@ -72,4 +72,16 @@ public class Task {
     public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 
     public LocalDateTime getTimestamp() { return timestamp;}
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setTaskText(String taskText) {
+        this.taskText = taskText;
+    }
 }

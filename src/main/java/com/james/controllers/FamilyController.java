@@ -82,6 +82,16 @@ public class FamilyController {
         return task;
     }
 
+    @RequestMapping (path = "/button1", method = RequestMethod.POST)
+    public Task addButton1Task(HttpSession session) {
+        String userName = (String) session.getAttribute("userName");
+        User user = users.findByUserName(userName);
+        LocalDateTime timestamp = LocalDateTime.now();
+        Task task = new Task(user, "button1text", null, null, timestamp);
+        tasks.save(task);
+        return task;
+    }
+
     //get task id from front-end via query param
     //set comment text in table
     //return task to front-end
