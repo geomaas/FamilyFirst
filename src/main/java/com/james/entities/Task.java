@@ -72,4 +72,28 @@ public class Task {
     public void setTimestamp(LocalDateTime timestamp) { this.timestamp = timestamp; }
 
     public LocalDateTime getTimestamp() { return timestamp;}
+
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public void setTaskText(String taskText) {
+        this.taskText = taskText;
+    }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "taskId=" + taskId +
+                ", user=" + user +
+                ", taskText='" + taskText + '\'' +
+                ", completedByUser=" + completedByUser +
+                ", commentText='" + commentText + '\'' +
+                ", timestamp=" + timestamp +
+                '}';
+    }
 }
