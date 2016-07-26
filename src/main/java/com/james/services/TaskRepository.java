@@ -1,6 +1,7 @@
 package com.james.services;
 
 import com.james.entities.Task;
+import com.james.entities.User;
 import org.springframework.data.repository.CrudRepository;
 
 import java.time.LocalDateTime;
@@ -10,4 +11,5 @@ import java.time.LocalDateTime;
  */
 public interface TaskRepository extends CrudRepository<Task, Integer> {
     public Iterable<Task> findByTimestampIsGreaterThan(LocalDateTime minDate);
+    public Task findByTaskText(String taskText);
 }

@@ -15,6 +15,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -95,49 +96,59 @@ public class FamilyFirstApplicationTests {
     @Test
     public void addTaskTest() throws Exception {
         int oldCount = (int) tasks.count();
-        User user = new User("newtestname", "newtestPassword");
+        User taskuser = new User("newtestname", "newtestPassword");
         String body = new String ("I like peanuts");
         ObjectMapper objectMapper = new ObjectMapper();
         String json = objectMapper.writeValueAsString(body);
         mockMvc.perform(
                 MockMvcRequestBuilders.post("/addTask")
-                        .content(json)
+                        .content(body)
                         .contentType("application/json")
         );
         int newCount = (int) tasks.count();
 
         Assert.assertTrue(newCount == oldCount + 1);
+        Assert.assertTrue(tasks.findByTaskText("I like peanuts") != null);
     }
-//
-////	@Test
-////	public void addCommentTest() throws Exception {
-////		User testuser = new User("bob", "pass");
-////		users.save(testuser);
-////		Task task = new Task(testuser, "thing to do", null, null, false);
-////		tasks.save(task);
-////
-////		String commentText = "this is the comment";
-////		task.setCommentText(commentText);
-////		tasks.save(task);
-////
-////		ObjectMapper om = new ObjectMapper();
-////		String json = om.writeValueAsString(task);
-////
-////		mockMvc.perform(
-////				MockMvcRequestBuilders.post("/comment/?1")
-////							.content(json)
-////							.contentType("application/json")
-////			);
-////
-////
-////		}
-//
-////	@RequestMapping(path = "/comment{taskId}", method = RequestMethod.POST)
-////	public Task comment (String comment, @PathVariable int taskId) {
-////		Task task = tasks.findOne(taskId);
-////		task.setCommentText(comment);
-////		tasks.save(task);
-////		return task;
-////	}
 
+	@Test
+	public void addCommentTest() throws Exception {
+		User testuser = new User("bob", "pass");
+		users.save(testuser);
+		Task task = new Task(testuser, "thing to do", null, null, LocalDateTime.now());
+		tasks.save(task);
+
+		String comment = "this is the comment";
+
+		mockMvc.perform(
+				MockMvcRequestBuilders.post("/comment" + task.getTaskId())
+							.content(comment)
+							.contentType("application/json")
+			);
+
+        Task commentedTask = tasks.findOne(task.getTaskId());
+
+        Assert.assertTrue(commentedTask.getCommentText().equals(comment));
+    }
+
+    @Test
+    public void completeTest() throws Exception {
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("userName", "bob");
+        User testuser = new User("bob", "pass");
+        users.save(testuser);
+        Task task = new Task(testuser, "thing to do", null, null, LocalDateTime.now());
+        tasks.save(task);
+
+        ResultActions ra = mockMvc.perform(
+                MockMvcRequestBuilders.post("/complete" + task.getTaskId())
+        );
+
+        MvcResult result= ra.andReturn();
+        MockHttpServletResponse response = result.getResponse();
+        String json = response.getContentAsString();
+
+        System.out.println(json);
+
+    }
 }
