@@ -5,18 +5,18 @@ module.exports = function(app){
 
     $scope.taskList = taskService.getAllTasks();
     $scope.tip = taskService.getTip();
-
+    $scope.user = userService.getCurrentUser();
 
     $scope.add = function(){
-      // console.log(`send task text ${$scope.taskText}`);
-      // console.log(`add a new task`);
+      console.log(`send task text ${$scope.taskText}`);
+      console.log(`add a new task`);
       $http({
             method: 'POST',
             url: '/addTask',
             data: $scope.taskText,
 
         }).then(function(response) {
-          // console.log(response);
+          console.log(response);
             taskService.getAllTasks();
         })
     };
@@ -45,10 +45,14 @@ module.exports = function(app){
             url: `/complete${id}`,
 
         }).then(function(response) {
-          console.log(response);
+          // console.log(response);
           taskService.getAllTasks();
         })
-    }
-
+    };
+    var mark = function(){
+      if (completedBy !== null) {
+        document.getElementById("check").setAttribute('checked')
+      }
+    };
   }]);
 };
