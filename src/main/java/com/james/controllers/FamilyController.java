@@ -43,8 +43,10 @@ public class FamilyController {
     @Autowired
     MedicationRepository medications;
 
+
+
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public User login(@RequestBody User user, HttpSession session) throws Exception {
+    public boolean login(@RequestBody User user, HttpSession session) throws Exception {
         User userInDb = users.findByUserName(user.getUserName());
         if (userInDb == null) {
             user.setPassword(PasswordStorage.createHash(user.getPassword()));
@@ -55,7 +57,9 @@ public class FamilyController {
         }
 
         session.setAttribute("userName", user.getUserName());
-        return user;
+
+            return user.isClient();
+
     }
 
     //create page @localhost 8080/tasks

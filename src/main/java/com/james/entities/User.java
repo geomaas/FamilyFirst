@@ -18,12 +18,21 @@ public class User {
     @Column(nullable = false)
     String password;
 
+    boolean client = false;
+
+
     public User() {
     }
 
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
+    }
+
+    public User(String userName, String password, boolean client) {
+        this.userName = userName;
+        this.password = password;
+        this.client = client;
     }
 
     public int getId() {
@@ -48,5 +57,13 @@ public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public boolean isClient() {
+        return client;
+    }
+
+    public void setClient(boolean client) {
+        this.client = client;
     }
 }
