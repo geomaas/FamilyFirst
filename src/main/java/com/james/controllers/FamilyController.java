@@ -46,7 +46,7 @@ public class FamilyController {
 
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
-    public boolean login(@RequestBody User user, HttpSession session) throws Exception {
+    public User login(@RequestBody User user, HttpSession session) throws Exception {
         User userInDb = users.findByUserName(user.getUserName());
         if (userInDb == null) {
             user.setPassword(PasswordStorage.createHash(user.getPassword()));
@@ -58,7 +58,7 @@ public class FamilyController {
 
         session.setAttribute("userName", user.getUserName());
 
-            return user.isClient();
+            return user;
 
     }
 
