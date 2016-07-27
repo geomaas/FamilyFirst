@@ -15,7 +15,7 @@ module.exports = function(app){
           }).then(function(response) {
             console.log(response);
 
-            angular.copy(response.data, allTasksList);
+            angular.copy(response.data.reverse(), allTasksList);
           })
           console.log("allTaskList array:", allTasksList);
           return allTasksList
