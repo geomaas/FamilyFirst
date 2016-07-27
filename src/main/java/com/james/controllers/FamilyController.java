@@ -9,22 +9,13 @@ import com.james.services.ProTipsRepository;
 import com.james.services.TaskRepository;
 import com.james.services.UserRepository;
 import com.james.utils.PasswordStorage;
-import org.h2.tools.Server;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
-import java.sql.Array;
-import java.time.Duration;
-import java.time.LocalDateTime;
-import java.io.FileNotFoundException;
-import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * Created by jamesyburr on 7/20/16.
@@ -47,7 +38,7 @@ public class FamilyController {
 
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session) throws Exception {
-        User userInDb = users.findByUserName(user.getUserName());
+        User userInDb = users.findFirstByUserName(user.getUserName());
         if (userInDb == null) {
             user.setPassword(PasswordStorage.createHash(user.getPassword()));
             users.save(user);
@@ -79,7 +70,7 @@ public class FamilyController {
     @RequestMapping (path = "/addTask", method = RequestMethod.POST)
     public Task addTask(HttpSession session, @RequestBody String taskText) {
         String userName = (String) session.getAttribute("userName");
-        User user = users.findByUserName(userName);
+        User user = users.findFirstByUserName(userName);
         LocalDateTime timestamp = LocalDateTime.now();
         Task task = new Task(user, taskText, null, null, timestamp);
         tasks.save(task);
@@ -103,7 +94,7 @@ public class FamilyController {
     @RequestMapping (path = "/complete{taskId}", method = RequestMethod.POST)
     public Task complete (HttpSession session, @PathVariable int taskId) {
         Task task = tasks.findOne(taskId);
-        User user = users.findByUserName((String) session.getAttribute("userName"));
+        User user = users.findFirstByUserName((String) session.getAttribute("userName"));
         task.setCompletedByUser(user);
         tasks.save(task);
         return task;
