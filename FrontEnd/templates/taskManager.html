@@ -8,12 +8,12 @@
 <div class="taskContainer">
     <div ng-repeat="task in taskList track by $index" class="task">
         <div class="postedBy">
-            <h6>{{task.timestamp.dayOfWeek}}</h6>
+            <h6>{{task.timestamp.dayOfWeek}} at {{task.timestamp.hour}}:{{task.timestamp.minute}}</h6>
         </div>
         <div class="post">
             <div class="done">
                 <!-- <button class="done" ng-click='done(task.taskId)' type="button" name="button">Done</button> -->
-                <input id="check" type="checkbox" checked ng-click='done(task.taskId)' name="name" value="">
+                <input id="check" type="checkbox"  ng-click='done(task.taskId)' name="name" value="">
             </div>
             <div class="mainTask">
                 <div class="actualTask">
