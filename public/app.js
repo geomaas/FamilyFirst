@@ -121,13 +121,11 @@ module.exports = function(app){
               method: 'GET',
               url: '/tasks',
           }).then(function(response) {
-            // console.log(response);
-            if (response.data.completedBy !== null) {
-              document.getElementById("check").setAttribute('checked')
-            }
+            console.log(response);
+
             angular.copy(response.data, allTasksList);
           })
-          // console.log("allTaskList array:", allTasksList);
+          console.log("allTaskList array:", allTasksList);
           return allTasksList
       },
 
