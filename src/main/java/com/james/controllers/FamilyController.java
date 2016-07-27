@@ -34,6 +34,8 @@ public class FamilyController {
     @Autowired
     MedicationRepository medications;
 
+
+
     @RequestMapping(path = "/login", method = RequestMethod.POST)
     public User login(@RequestBody User user, HttpSession session) throws Exception {
         User userInDb = users.findFirstByUserName(user.getUserName());
@@ -46,7 +48,9 @@ public class FamilyController {
         }
 
         session.setAttribute("userName", user.getUserName());
-        return user;
+
+            return user;
+
     }
 
     //create page @localhost 8080/tasks

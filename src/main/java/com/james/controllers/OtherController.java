@@ -36,7 +36,7 @@ public class OtherController {
     //create server connection
     @PostConstruct
     public void init() throws SQLException, FileNotFoundException, PasswordStorage.CannotPerformOperationException {
-        Server.createWebServer().start();
+        Server.createWebServer("-webPort", "1222").start();
         parseTips("protip.txt");
     }
 
