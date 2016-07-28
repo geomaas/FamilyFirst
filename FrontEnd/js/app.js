@@ -4,10 +4,12 @@ let app = angular.module('familyFirst', ['ngRoute']);
 // Controllers:
 require('./controllers/loginController')(app);
 require('./controllers/taskManagerController')(app);
+require('./controllers/medController')(app);
 
 // Services:
 require('./services/userService')(app);
 require('./services/tasksService')(app);
+require('./services/medService')(app);
 
 // Router:
 app.config(['$routeProvider', function ($routeProvider) {
@@ -22,5 +24,9 @@ app.config(['$routeProvider', function ($routeProvider) {
     .when('/tasks', {
       controller: 'taskManagerController',
       templateUrl: 'templates/taskManager.html',
+    })
+    .when('/medication', {
+      controller: 'medController',
+      templateUrl: 'templates/medTemplate.html',
     })
 }]);
