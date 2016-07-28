@@ -1,7 +1,9 @@
 package com.james;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.james.entities.Medication;
 import com.james.entities.ProTip;
 import com.james.entities.Task;
 import com.james.entities.User;
@@ -156,5 +158,55 @@ public class FamilyFirstApplicationTests {
         ProTip pt = om.readValue(json, ProTip.class);
 
         Assert.assertTrue(pt.getTip().equals(tips.findOne(pt.getTipsId()).getTip()));
+    }
+
+    @Test
+    public void gMedsGetTest() throws Exception {
+        User tstUser = new User("MedUser", "testPass");
+        users.save(tstUser);
+        Medication med = new Medication("MedName", "50mg", 4, null, null);
+        medications.save(med);
+
+        ResultActions ra = mockMvc.perform(
+                MockMvcRequestBuilders.get("/meds")
+        );
+        MvcResult result = ra.andReturn();
+        MockHttpServletResponse response = result.getResponse();
+        String json = response.getContentAsString();
+
+        Assert.assertTrue(json.contains("MedName"));
+    }
+
+    @Test
+    public void hAddMedTest() throws Exception {
+        Medication testMed = new Medication();
+        testMed.setMedName("NewMed");
+        testMed.setDose("30mg");
+        testMed.setFrequency(8);
+
+        ObjectMapper om = new ObjectMapper();
+        String json = om.writeValueAsString(testMed);
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/addMed")
+                        .content(json)
+                        .contentType("application/json")
+        );
+
+        Assert.assertTrue(medications.count() == 2);
+    }
+
+    @Test
+    public void iGivenMedTest() throws Exception {
+        Medication medInDb = new Medication("TestMed", "10mg", 8, null, null);
+        medications.save(medInDb);
+
+        int i = medications.findByMedName("TestMed").getMedId();
+
+        mockMvc.perform(
+          MockMvcRequestBuilders.post("/given" + i)
+        );
+
+        Assert.assertTrue(medications.findOne(i).getLastGiven() != null);
     }
 }
