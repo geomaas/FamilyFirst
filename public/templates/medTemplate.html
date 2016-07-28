@@ -19,12 +19,12 @@
                 <h6 >Last Given: {{med.lastGiven.dayOfWeek}}, {{med.lastGiven.hour}}:{{med.lastGiven.minute}}</h6>
                 <div class="newComments">
                     <button ng-click='give(med.medId)' type="button" name="button">Give</button>
-                    <button ng-click='timer(med.lastGiven.hour,med.frequency)' type="button" name="button">Check Time</button>
+                    <button ng-click='timer(med.lastGiven.hour,med.frequency,$index)' type="button" name="button">Check Time</button>
                 </div>
             </div>
             <div class="timer">
                 <h5>Timer Goes Here</h5>
-                <div id="timerBar">
+                <div id="timerBar" ng-style='timer(med.lastGiven.hour,med.frequency)' >
 
                 </div>
             </div>

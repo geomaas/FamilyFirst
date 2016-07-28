@@ -135,7 +135,6 @@ main {
   float: right; }
 
 #timerBar {
-  float: right;
   background-color: red;
   color: black;
   position: relative;
