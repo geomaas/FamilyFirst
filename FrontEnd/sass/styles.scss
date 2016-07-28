@@ -22,8 +22,9 @@ main {
   color: black;
 }
 .loginContainer{
-  width: 30%;
-  margin: 5% auto;
+  min-height: 90rem;
+  max-height: 90rem;
+  margin-top: 5%;
 }
 .taskContainer{
   width: 70%;
@@ -46,6 +47,7 @@ main {
   background-color: #b9b9b9;
   border-radius: 10px 10px 0px 0px;
   width: 40%;
+  height: 2.5em;
   margin-bottom: -1%;
   text-align: center;
 }
@@ -120,4 +122,31 @@ box-shadow: 10px 10px 5px #383737;
 .proTip h6{
   display: inline-block;
   width: 88%;
+}
+.medInfo{
+  display: inline-block;
+  width: 38%;
+}
+.timer{
+  width: 60%;
+  display: inline-block;
+  float: right;
+}
+#timerBar{
+  float: right;
+  background-color:red;
+    color:black;
+    position:relative;
+    width: 0%;
+    height:20px;
+}
+@media screen and (min-width: 800px) {
+  .taskContainer{
+    min-height: 20rem;
+    max-height: 20rem;
+  }
+  .loginContainer{
+    min-height: 20rem;
+    max-height: 20rem;
+  }
 }

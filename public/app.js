@@ -21,6 +21,76 @@ module.exports = function(app){
 module.exports = function(app){
 
 // this handles the task manager view
+  app.controller('medController', ['$scope', 'userService', 'medService', '$http', function($scope, userService, medService, $http){
+
+    $scope.medList = medService.getAllMeds();
+    $scope.tip = medService.getTip();
+    $scope.user = userService.getCurrentUser();
+
+    $scope.newMed = function(){
+      console.log(`send medication info ${$scope.medName}, ${$scope.dosage},${$scope.frequency},${$scope.instructions}`);
+      console.log(`add a medication`);
+      $http({
+            method: 'POST',
+            url: '/addMed',
+            data: {
+              medName: $scope.medName,
+              dose: $scope.dosage,
+              frequency: $scope.frequency,
+              instructions: $scope.instructions,
+            },
+        }).then(function(response) {
+          console.log(response);
+            medService.getAllMeds();
+            $scope.medName = "";
+            $scope.dosage ="";
+            $scope.frequency ="";
+            $scope.instructions = "";
+        })
+    };
+
+
+    $scope.give = function(id){
+      console.log(`give medication with id of ${id}`);
+      $http({
+            method: 'POST',
+            url: `/given${id}`,
+
+        }).then(function(response) {
+          console.log(response);
+          medService.getAllMeds();
+        })
+    };
+    $scope.model = {};
+    $scope.timer = function(timeGivenHr,frequency){
+      let date = new Date();
+      let ctHrs = date.getHours();
+      console.log("current time hrs",ctHrs);
+      console.log("type of time given",timeGivenHr);
+      let elapsedTime = ctHrs - timeGivenHr;
+      console.log("elapsed Time", elapsedTime);
+      let percentage = elapsedTime / frequency;
+      console.log("percentage",percentage*100);
+      let bar = document.getElementById('timerBar')
+      let widthPercent = percentage*100;
+      console.log(widthPercent);
+      bar.style.width = `${widthPercent}%`;
+      if (widthPercent >= 75 ) {
+        bar.style.backgroundColor='green';
+      } else if (widthPercent > 25 && widthPercent < 75) {
+        bar.style.backgroundColor='yellow';
+      } else {
+        bar.style.backgroundColor='red';
+      }
+    }
+
+  }]);
+};
+
+},{}],3:[function(require,module,exports){
+module.exports = function(app){
+
+// this handles the task manager view
   app.controller('taskManagerController', ['$scope', 'userService', 'taskService', '$http', function($scope, userService, taskService, $http){
 
     $scope.taskList = taskService.getAllTasks();
@@ -78,17 +148,19 @@ module.exports = function(app){
   }]);
 };
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 let app = angular.module('familyFirst', ['ngRoute']);
 
 
 // Controllers:
 require('./controllers/loginController')(app);
 require('./controllers/taskManagerController')(app);
+require('./controllers/medController')(app);
 
 // Services:
 require('./services/userService')(app);
 require('./services/tasksService')(app);
+require('./services/medService')(app);
 
 // Router:
 app.config(['$routeProvider', function ($routeProvider) {
@@ -104,9 +176,57 @@ app.config(['$routeProvider', function ($routeProvider) {
       controller: 'taskManagerController',
       templateUrl: 'templates/taskManager.html',
     })
+    .when('/medication', {
+      controller: 'medController',
+      templateUrl: 'templates/medTemplate.html',
+    })
 }]);
 
-},{"./controllers/loginController":1,"./controllers/taskManagerController":2,"./services/tasksService":4,"./services/userService":5}],4:[function(require,module,exports){
+},{"./controllers/loginController":1,"./controllers/medController":2,"./controllers/taskManagerController":3,"./services/medService":5,"./services/tasksService":6,"./services/userService":7}],5:[function(require,module,exports){
+module.exports = function(app){
+
+// this service will handle the task data
+  app.factory('medService', ['$http','$location', function($http, $location){
+      let allMedsList = [];
+      let allTips = [];
+
+
+    return {
+      getAllMeds: function(){
+        // console.log(`get tasks from server`);
+        $http({
+              method: 'GET',
+              url: '/meds',
+          }).then(function(response) {
+            console.log(response);
+
+            angular.copy(response.data.reverse(), allMedsList);
+          })
+          console.log("allTaskList array:", allMedsList);
+          return allMedsList
+      },
+
+      getTip: function(){
+        // console.log('get a tip');
+        $http({
+              method: 'GET',
+              url: `/Protip`,
+
+
+          }).then(function(response) {
+            // console.log(response);
+            angular.copy(response.data, allTips)
+            // console.log(allTips);
+          })
+          return allTips
+      },
+
+    };
+
+  }]);
+};
+
+},{}],6:[function(require,module,exports){
 module.exports = function(app){
 
 // this service will handle the task data
@@ -150,7 +270,7 @@ module.exports = function(app){
   }]);
 };
 
-},{}],5:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 module.exports = function(app){
 
 // this service will handle the user data
@@ -190,4 +310,4 @@ module.exports = function(app){
   }]);
 };
 
-},{}]},{},[3])
+},{}]},{},[4])
