@@ -1,11 +1,12 @@
-<div class="titleBar">
+
+<div  class="row titleBar small-12 columns ">
     <img src="images/banner.png" alt="" />
 
     <a href="#/login">logout</a>
     <h4>Welcome {{user.userName}}!</h4>
 </div>
 
-<div class="taskContainer">
+<div  class="row small-8 small-centered columns taskContainer">
     <div ng-repeat="task in taskList track by $index" class="task">
         <div class="postedBy">
             <h6>{{task.timestamp.dayOfWeek}} at {{task.timestamp.hour}}:{{task.timestamp.minute}}</h6>
@@ -13,7 +14,8 @@
         <div class="post">
             <div class="done">
                 <!-- <button class="done" ng-click='done(task.taskId)' type="button" name="button">Done</button> -->
-                <input id="check" type="checkbox"  ng-click='done(task.taskId)' name="name" value="">
+                <input id="check" ng-if="task.completedByUser" type="checkbox"  checked ng-click='done(task.taskId)' name="name" value="">
+                <input id="check" ng-if="task.completedByUser === null" type="checkbox"  ng-click='done(task.taskId)' name="name" value="">
             </div>
             <div class="mainTask">
                 <div class="actualTask">
@@ -24,7 +26,7 @@
                     <h6>{{task.commentText}}</h6>
                 </div>
 
-                <div class="newComments">
+                <div ng-if="task.commentText === null" class="newComments">
                     <input ng-model="model.newComment[$index]" type="text" placeholder="comments">
                     <button ng-click='comment(task.taskId,$index)' type="button" name="button">Add</button>
                 </div>
@@ -39,7 +41,7 @@
     </div>
 </div>
 
-<div class="footer">
+<div class="row small-12 columns footer">
     <div class="addTask">
         <input ng-model='taskText' type="text" name="task" value="" placeholder="add a new task">
         <button ng-click='add()' type="button" name="add">Add Task</button>

@@ -18,6 +18,7 @@ module.exports = function(app){
         }).then(function(response) {
           console.log(response);
             taskService.getAllTasks();
+            $scope.taskText = "";
         })
     };
 

@@ -1,6 +1,10 @@
 main {
   background-color: rgba(173, 206, 230, 0.41);
 }
+.titleBar{
+  padding: 0;
+  width: 100%;
+}
 .titleBar img{
   width: 100%;
 }
@@ -22,8 +26,9 @@ main {
   margin: 5% auto;
 }
 .taskContainer{
-  width: 60%;
-  height:23em;
+  width: 70%;
+  min-height: 90rem;
+  max-height: 90rem;
   margin: 0 auto;
   overflow: scroll;
 }
@@ -32,6 +37,7 @@ main {
   margin: 5% auto;
 }
 .footer{
+  vertical-align: bottom;
   background-color: #0B80D9;
   height: 10em;
   padding: 1%;
@@ -40,7 +46,7 @@ main {
   background-color: #b9b9b9;
   border-radius: 10px 10px 0px 0px;
   width: 40%;
-  margin: 0;
+  margin-bottom: -1%;
   text-align: center;
 }
 .post{
@@ -81,7 +87,7 @@ main {
   width: 48%;
 margin: 0 auto;
 display: inline-block;
-background-color: gray;
+background-color: #b9b9b9;
 padding: 1%;
 border-radius: 10px;
 border: 1px solid black;
@@ -101,7 +107,7 @@ box-shadow: 10px 10px 5px #383737;
 margin: 0 auto;
 float: right;
 display: inline-block;
-background-color: gray;
+background-color: #F0E66A;
 padding: 1%;
 border-radius: 10px;
 border: 1px solid black;
@@ -110,4 +116,8 @@ box-shadow: 10px 10px 5px #383737;
 .proTip img{
   width: 10%;
   display: inline-block;
+}
+.proTip h6{
+  display: inline-block;
+  width: 88%;
 }
