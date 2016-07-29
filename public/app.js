@@ -75,7 +75,7 @@ module.exports = function(app) {
             let widthPercent = percentage * 100;
             console.log(widthPercent);
             // bar.style.width = `${widthPercent}%`;
-            if (widthPercent >= 75 && widthPercent<100) {
+            if (widthPercent >= 75 && widthPercent < 100) {
                 return {
                     "width": `${widthPercent}%`,
                     "background-color": "green"
@@ -90,19 +90,24 @@ module.exports = function(app) {
                 return {
                     "width": `${widthPercent}%`,
                     "background-color": "red"
-                  }
-                } else if (widthPercent >= 100) {
-                  return {
-                      "width": "100%",
-                      "background-color": "green"
-                    }
-                } else if (widthPercent === 0) {
-                    return {
-                        "width": "10%",
-                        "background-color": "red"
-                      }
-                    }
+                }
+            } else if (widthPercent >= 100) {
+                return {
+                    "width": "100%",
+                    "background-color": "green"
+                }
+            } else if (widthPercent === 0) {
+                return {
+                    "width": "10%",
+                    "background-color": "red"
+                }
+            } else if (widthPercent < 0){
+              return {
+                  "width": "100%",
+                  "background-color": "green"
+              }
             }
+        }
 
 
     }]);

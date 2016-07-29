@@ -1,16 +1,16 @@
 <div class="row titleBar small-12 columns ">
-    <img src="images/banner.png" alt="" />
-
+    <img src="" alt="" />
+    <h1>Medications</h1>
     <a href="#/tasks">Tasks</a>
     <a href="#/login">logout</a>
     <h4>Welcome {{user.userName}}!</h4>
 </div>
 
-<div class="row small-8 small-centered columns taskContainer">
+<div class=" small-8 small-centered columns taskContainer">
     <div ng-repeat="med in medList track by $index" class="task">
-        <div class="postedBy">
+        <!-- <div class="postedBy">
             <h6>{{med.medName}}</h6>
-        </div>
+        </div> -->
         <div class="post">
             <div class="medInfo">
                 <h5>{{med.dose}}</h5>
@@ -34,7 +34,7 @@
 </div>
 
 
-<div class="row small-12 columns footer">
+<div class="small-2 columns ">
     <div class="addTask">
         <input ng-model='medName' type="text" name="task" value="" placeholder="Medication Name">
         <input ng-model='dosage' type="text" name="name" value="" placeholder="dosage">
