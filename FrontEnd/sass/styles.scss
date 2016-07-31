@@ -116,7 +116,17 @@ main {
 }
 .newComments input {
   display: inline-block;
-  width: 70%;
+    width: 70%;
+    border: 1px solid blue;
+}
+.newComments button{
+  display: inline-block;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    width: 20%;
+    height: 2rem;
+    margin-left: 2%;
 }
 .addTask{
 margin: 10% auto;
@@ -129,7 +139,52 @@ border-radius: 10px;
 min-height: 10rem;
 }
 .addTask h4{
+  text-align: center;
   padding: 2%;
+}
+.addTask input{
+  border: 1px solid blue;
+  width: 90%;
+  margin: 0 auto;
+}
+.addTask button{
+  display: inline-block;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    width: 41%;
+    height: 2rem;
+    float: right;
+    margin: 3% 2% 0% 0%;
+}
+.addMed{
+margin: 10% auto;
+display: inline-block;
+background-color: rgba(243, 243, 243, 0.75);
+padding: 1%;
+border-radius: 10px;
+// border: 1px solid black;
+// box-shadow: 10px 10px 5px #383737;
+min-height: 10rem;
+}
+.addAddMed h4{
+  text-align: center;
+  padding: 2%;
+}
+.addMed input{
+  border: 1px solid blue;
+  width: 90%;
+  margin: 1% auto;
+}
+.addMed button{
+  display: inline-block;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    width: 50%;
+    height: 2rem;
+    float: right;
+    margin: 3% 2% 0% 0%;
 }
 .done input[type=checkbox]
 {
@@ -161,12 +216,32 @@ border-radius: 10px;
 }
 .medInfo{
   display: inline-block;
-  width: 38%;
+  width: 79%;
 }
 .timer{
-  width: 60%;
+  width: 100%;
   display: inline-block;
   float: right;
+}
+.timer h5{
+  display: inline-block;
+}
+.end{
+  float: right;
+}
+.giveMed{
+  display: inline-block;
+  width: 20%;
+}
+.giveMed button{
+  display: inline-block;
+    background-color: blue;
+    color: white;
+    border-radius: 5px;
+    width: 80%;
+    height: 2rem;
+    margin-left: 2%;
+    float: right;
 }
 #timerBar{
   background-color:red;
