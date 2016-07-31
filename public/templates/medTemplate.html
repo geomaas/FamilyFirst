@@ -1,50 +1,62 @@
-<div class="row titleBar small-12 columns ">
-    <img src="images/banner.png" alt="" />
+<div  class="row titleBar small-12 columns ">
+  <div class="title">
+  <img src="images/hand (1).png" alt="" />
+  <h1>Medication</h1>
+  </div>
+  <div class="welcome">
 
-    <a href="#/tasks">Tasks</a>
-    <a href="#/login">logout</a>
-    <h4>Welcome {{user.userName}}!</h4>
+    <h5 class="small-12 columns">{{user.userName}}</h5>
+    <a class="small-12 columns" href="#/tasks">Tasks</a>
+    <a class="small-12 columns" href="#/login">logout</a>
+  </div>
 </div>
 
-<div class="row small-8 small-centered columns taskContainer">
+<div class="row container">
+<div class="small-4 columns">
+  <div class="row small-12 columns addMed">
+    <h4>New Medication</h4>
+      <input ng-model='medName' type="text" name="task" value="" placeholder="Medication Name">
+      <input ng-model='dosage' type="text" name="name" value="" placeholder="dosage">
+      <input ng-model='frequency' type="text" name="name" value="" placeholder="Frequency in Hrs">
+      <input ng-model='instructions' type="text" name="name" value="" placeholder="Instructions">
+      <!-- <input ng-model='lastGiven' type="text" name="name" value=""> -->
+      <button ng-click='newMed()' type="button" name="add">Add Medication <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>
+  </div>
+  <div class="row small-12 columns proTip">
+      <img src="images/lightbulb.png" alt="LightBulb" />
+      <h6>{{tip.tip}}</h6>
+  </div>
+</div>
+
+<div class=" small-8 small-centered columns taskContainer">
     <div ng-repeat="med in medList track by $index" class="task">
-        <div class="postedBy">
+        <!-- <div class="postedBy">
             <h6>{{med.medName}}</h6>
-        </div>
+        </div> -->
         <div class="post">
-            <div class="medInfo">
-                <h5>{{med.dose}}</h5>
-                <h5>{{med.frequency}} Hrs</h5>
+          <div class="MedName">
+            <h6>{{med.medName}} {{med.dose}}</h6>
+          </div>
+          <div class="timer">
+              <h5>Time Until Next Dose</h5>
+              <div id="timerBar" ng-style='timer(med.lastGiven.hour,med.frequency)' >
+
+              </div>
+
+              <h5>{{med.frequency}} Hrs</h5>
+                <h5 class="end">0 Hrs</h5>
+          </div>
+              <div class="medInfo">
                 <h6>{{med.instructions}}</h6>
                 <h6 >Last Given: {{med.lastGiven.dayOfWeek}}, {{med.lastGiven.hour}}:{{med.lastGiven.minute}}</h6>
-                <div class="newComments">
+              </div>
+                <div class="giveMed">
                     <button ng-click='give(med.medId)' type="button" name="button">Give</button>
-                    <button ng-click='timer(med.lastGiven.hour,med.frequency)' type="button" name="button">Check Time</button>
                 </div>
-            </div>
-            <div class="timer">
-                <h5>Timer Goes Here</h5>
-                <div id="timerBar">
 
-                </div>
-            </div>
+
         </div>
 
     </div>
 </div>
-
-
-<div class="row small-12 columns footer">
-    <div class="addTask">
-        <input ng-model='medName' type="text" name="task" value="" placeholder="Medication Name">
-        <input ng-model='dosage' type="text" name="name" value="" placeholder="dosage">
-        <input ng-model='frequency' type="text" name="name" value="" placeholder="Frequency in Hrs">
-        <input ng-model='instructions' type="text" name="name" value="" placeholder="Instructions">
-        <!-- <input ng-model='lastGiven' type="text" name="name" value=""> -->
-        <button ng-click='newMed()' type="button" name="add">Add Medication</button>
-    </div>
-    <div class="proTip">
-        <img src="images/lightbulb.png" alt="LightBulb" />
-        <h6>{{tip.tip}}</h6>
-    </div>
 </div>

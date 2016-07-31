@@ -1,17 +1,33 @@
 
 <div  class="row titleBar small-12 columns ">
-    <img src="images/banner.png" alt="" />
+  <div class="title">
+  <img src="images/hand (1).png" alt="" />
+  <h1>Care Mangement Tasks</h1>
+  </div>
+  <div class="welcome">
 
-    <a href="#/medication">Medications</a>
-    <a href="#/login">logout</a>
-    <h4>Welcome {{user.userName}}!</h4>
+    <h5 class="small-12 columns">{{user.userName}}</h5>
+    <a class="small-12 columns" href="#/medication">Medications</a>
+    <a class="small-12 columns" href="#/login">logout</a>
+  </div>
 </div>
-
-<div  class="row small-8 small-centered columns taskContainer">
+<div class="row container">
+<div class="small-4 columns">
+    <div class=" addTask row small-12 columns">
+      <h4>Add a new Task</h4>
+        <input ng-model='taskText' type="text" name="task" value="" placeholder="Describe your Task">
+        <button ng-click='add()' type="button" name="add">Add Task <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>
+    </div>
+    <div class="row small-12 columns proTip">
+        <img src="images/lightbulb.png" alt="LightBulb" />
+        <h6>{{tip.tip}}</h6>
+    </div>
+</div>
+<div  class="small-8 small-centered columns taskContainer">
     <div ng-repeat="task in taskList track by $index" class="task">
-        <div class="postedBy">
+        <!-- <div class="postedBy">
             <h6>{{task.timestamp.dayOfWeek}} at {{task.timestamp.hour}}:{{task.timestamp.minute}}</h6>
-        </div>
+        </div> -->
         <div class="post">
             <div class="done">
                 <!-- <button class="done" ng-click='done(task.taskId)' type="button" name="button">Done</button> -->
@@ -41,8 +57,9 @@
         </div>
     </div>
 </div>
+</div>
 
-<div class="row small-12 columns footer">
+<!-- <div class="small-2 columns">
     <div class="addTask">
         <input ng-model='taskText' type="text" name="task" value="" placeholder="add a new task">
         <button ng-click='add()' type="button" name="add">Add Task</button>
@@ -51,4 +68,4 @@
         <img src="images/lightbulb.png" alt="LightBulb" />
         <h6>{{tip.tip}}</h6>
     </div>
-</div>
+</div> -->
