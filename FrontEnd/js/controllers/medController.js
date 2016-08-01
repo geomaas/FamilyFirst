@@ -41,6 +41,17 @@ module.exports = function(app) {
                 medService.getAllMeds();
             })
         };
+        $scope.remove = function(id) {
+            console.log(`remove medication with id of ${id}`);
+            $http({
+                method: 'POST',
+                url: `/deleteMed${id}`,
+
+            }).then(function(response) {
+                console.log(response);
+                medService.getAllMeds();
+            })
+        };
         $scope.model = {};
         $scope.timer = function(timeGivenHr, frequency) {
             let date = new Date();
@@ -61,12 +72,12 @@ module.exports = function(app) {
                     "background-color": "green"
                 }
                 // bar.style.backgroundColor='green';
-            } else if (widthPercent > 50 && widthPercent < 75) {
+            } else if (widthPercent >= 50 && widthPercent < 75) {
                 return {
                     "width": `${widthPercent}%`,
                     "background-color": "yellow"
                 } // bar.style.backgroundColor='yellow';
-            } else if (widthPercent <= 50 && widthPercent > 0) {
+            } else if (widthPercent < 50 && widthPercent > 0) {
                 return {
                     "width": `${widthPercent}%`,
                     "background-color": "red"

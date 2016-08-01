@@ -17,6 +17,7 @@ main {
   display: inline-block;
     width: 18%;
     margin-top: 2%;
+    text-align: right;
 }
 
 .welcome h5{
@@ -46,19 +47,30 @@ main {
   color: white;
 }
 .tagLine{
-  text-align: center;
-  background-color: #F0DE73;
   width: 70%;
   margin: 0 auto;
-  border-radius: 10px;
-  border: 1px solid #b9b9b9;
-  color: black;
+}
+.tagLine h3{
+font-family: 'Bad Script', cursive;    margin-top: 1%;
+    text-align: center;
+color: white;
+text-shadow: 2px 2px #000000;
+
 }
 .loginContainer{
   min-height: 90rem;
   max-height: 90rem;
   margin-top: 5%;
 }
+.loginContainer button{
+  display: inline-block;
+    background-color: #194ba0;
+    color: white;
+    border-radius: 5px;
+    width: 41%;
+    height: 2rem;
+}
+
 .taskContainer{
   width: 70%;
   min-height: 90rem;
@@ -117,11 +129,11 @@ main {
 .newComments input {
   display: inline-block;
     width: 70%;
-    border: 1px solid blue;
+    border: 1px solid #194ba0;
 }
 .newComments button{
   display: inline-block;
-    background-color: blue;
+    background-color: #194ba0;
     color: white;
     border-radius: 5px;
     width: 20%;
@@ -143,13 +155,13 @@ min-height: 10rem;
   padding: 2%;
 }
 .addTask input{
-  border: 1px solid blue;
+  border: 1px solid #194ba0;
   width: 90%;
   margin: 0 auto;
 }
 .addTask button{
   display: inline-block;
-    background-color: blue;
+    background-color: #194ba0;
     color: white;
     border-radius: 5px;
     width: 41%;
@@ -178,7 +190,7 @@ min-height: 10rem;
 }
 .addMed button{
   display: inline-block;
-    background-color: blue;
+    background-color: #194ba0;
     color: white;
     border-radius: 5px;
     width: 50%;
@@ -235,7 +247,7 @@ border-radius: 10px;
 }
 .giveMed button{
   display: inline-block;
-    background-color: blue;
+    background-color: #194ba0;
     color: white;
     border-radius: 5px;
     width: 80%;
@@ -243,12 +255,37 @@ border-radius: 10px;
     margin-left: 2%;
     float: right;
 }
+.medName h5{
+  display: inline-block;
+  width: 70%;
+}
+.medName button{
+  display: inline-block;
+    background-color: #8c8484;
+    color: white;
+    border-radius: 5px;
+    width: 25%;
+    height: 2rem;
+    margin-left: 2%;
+    float: right;
+}
+.timerContainer{
+  width: 100%;
+  height: 28px;
+  background-color: #5f5e5e;
+  border-style: inset;
+  border-width: 4px;
+  border-radius: 50px 15px;
+
+  }
+
 #timerBar{
   background-color:red;
     color:black;
     position:relative;
     width: 0%;
     height:20px;
+    border-radius: 50px 15px;
 }
 @media screen and (min-width: 800px) {
   .taskContainer{
