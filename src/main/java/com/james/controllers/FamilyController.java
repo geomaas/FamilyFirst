@@ -138,7 +138,7 @@ public class FamilyController {
         return med;
     }
 
-    @RequestMapping(path = "/deleteMed{medId}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/deleteMed{medId}", method = RequestMethod.POST)
     public void deleteMed (@PathVariable int medId) {
         medications.delete(medId);
     }
