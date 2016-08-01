@@ -7,8 +7,8 @@
   <div class="welcome">
 
     <h5 class="small-12 columns">{{user.userName}}</h5>
-    <a class="small-12 columns" href="#/medication">Medications</a>
-    <a class="small-12 columns" href="#/login">logout</a>
+    <a class="small-12 columns" href="#/login" >logout</a>
+    <h5><a class="small-12 columns" href="#/medication" ><b>Medications</b></a></h5>
   </div>
 </div>
 <div class="row container">
@@ -36,6 +36,7 @@
             </div>
             <div class="mainTask">
                 <div class="actualTask">
+                    <h6>{{task.timestamp.dayOfWeek}} at {{task.timestamp.hour}}:{{task.timestamp.minute}}</h6>
                     <h4>{{task.taskText}}</h4>
                 </div>
                 <div class="comments">
@@ -51,8 +52,8 @@
 
             </div>
             <div class="created">
-              <h6>Created By: {{task.user.userName}}</h6>
-              <h6>Completed By: {{task.completedByUser.userName}}</h6>
+              <h6>Created By: <b>{{task.user.userName}}</b></h6>
+              <h6>Completed By: <b>{{task.completedByUser.userName}}</b></h6>
             </div>
         </div>
     </div>

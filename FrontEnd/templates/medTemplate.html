@@ -6,8 +6,8 @@
   <div class="welcome">
 
     <h5 class="small-12 columns">{{user.userName}}</h5>
-    <a class="small-12 columns" href="#/tasks">Tasks</a>
-    <a class="small-12 columns" href="#/login">logout</a>
+    <a class="small-12 columns" href="#/login" >logout</a>
+    <h5><a class="small-12 columns" href="#/tasks" ><b>Tasks</b></a></h5>
   </div>
 </div>
 
@@ -34,24 +34,26 @@
             <h6>{{med.medName}}</h6>
         </div> -->
         <div class="post">
-          <div class="MedName">
-            <h6>{{med.medName}} {{med.dose}}</h6>
+          <div class="medName">
+            <h5>{{med.medName}} {{med.dose}}</h5>
+            <button ng-click='remove(med.medId)' type="button" name="button">Remove Med <i class="fa fa-trash" aria-hidden="true"></i></button>
           </div>
           <div class="timer">
-              <h5>Time Until Next Dose</h5>
+              <h6>Time Until Next Dose</h6>
+              <div class="timerContainer">
               <div id="timerBar" ng-style='timer(med.lastGiven.hour,med.frequency)' >
 
               </div>
-
+            </div>
               <h5>{{med.frequency}} Hrs</h5>
                 <h5 class="end">0 Hrs</h5>
           </div>
               <div class="medInfo">
                 <h6>{{med.instructions}}</h6>
-                <h6 >Last Given: {{med.lastGiven.dayOfWeek}}, {{med.lastGiven.hour}}:{{med.lastGiven.minute}}</h6>
+                <h6 ng-if="med.lastGiven.dayOfWeek">Last Given: {{med.lastGiven.dayOfWeek}}, {{med.lastGiven.hour}}:{{med.lastGiven.minute}}</h6>
               </div>
                 <div class="giveMed">
-                    <button ng-click='give(med.medId)' type="button" name="button">Give</button>
+                    <button ng-click='give(med.medId)' type="button" name="button">Give <i class="fa fa-plus-circle" aria-hidden="true"></i></button>
                 </div>
 
 
