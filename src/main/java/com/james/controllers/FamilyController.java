@@ -137,4 +137,9 @@ public class FamilyController {
         medications.save(med);
         return med;
     }
+
+    @RequestMapping(path = "/deleteMed{medId}", method = RequestMethod.POST)
+    public void deleteMed (@PathVariable int medId) {
+        medications.delete(medId);
+    }
 }

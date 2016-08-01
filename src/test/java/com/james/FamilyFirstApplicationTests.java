@@ -209,4 +209,20 @@ public class FamilyFirstApplicationTests {
 
         Assert.assertTrue(medications.findOne(i).getLastGiven() != null);
     }
+
+    @Test
+    public void jDeleteMedTest() throws Exception {
+
+        int medCount = (int) medications.count();
+
+        int i = medications.findByMedName("TestMed").getMedId();
+
+        mockMvc.perform(
+                MockMvcRequestBuilders.post("/deleteMed" + i)
+        );
+
+        int newMedCount = (int) medications.count();
+
+        Assert.assertTrue(newMedCount == medCount - 1);
+    }
 }
