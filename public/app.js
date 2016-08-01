@@ -186,7 +186,7 @@ module.exports = function(app){
 };
 
 },{}],4:[function(require,module,exports){
-let app = angular.module('familyFirst', ['ngRoute', 'ngAnimate']);
+let app = angular.module('familyFirst', ['ngRoute']);
 
 
 // Controllers:

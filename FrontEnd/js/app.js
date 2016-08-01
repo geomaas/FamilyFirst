@@ -1,4 +1,4 @@
-let app = angular.module('familyFirst', ['ngRoute', 'ngAnimate']);
+let app = angular.module('familyFirst', ['ngRoute']);
 
 
 // Controllers:
