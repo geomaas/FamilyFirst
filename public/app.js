@@ -89,7 +89,7 @@ module.exports = function(app) {
             if (widthPercent >= 75 && widthPercent < 100) {
                 return {
                     "width": `${widthPercent}%`,
-                    "background-color": "green"
+                    "background-color": "#81F04F"
                 }
                 // bar.style.backgroundColor='green';
             } else if (widthPercent >= 50 && widthPercent < 75) {
@@ -186,7 +186,7 @@ module.exports = function(app){
 };
 
 },{}],4:[function(require,module,exports){
-let app = angular.module('familyFirst', ['ngRoute']);
+let app = angular.module('familyFirst', ['ngRoute', 'ngAnimate']);
 
 
 // Controllers:

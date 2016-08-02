@@ -69,7 +69,7 @@ module.exports = function(app) {
             if (widthPercent >= 75 && widthPercent < 100) {
                 return {
                     "width": `${widthPercent}%`,
-                    "background-color": "green"
+                    "background-color": "#81F04F"
                 }
                 // bar.style.backgroundColor='green';
             } else if (widthPercent >= 50 && widthPercent < 75) {
