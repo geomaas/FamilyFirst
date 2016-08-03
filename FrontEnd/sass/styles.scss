@@ -148,7 +148,7 @@ text-shadow: 2px 2px #000000;
     margin-left: 2%;
 }
 .addTask{
-margin: 10% auto;
+margin: 0 auto;
 display: inline-block;
 background-color: rgba(243, 243, 243, 0.75);
 padding: 1%;
@@ -177,7 +177,7 @@ min-height: 10rem;
     margin: 3% 2% 0% 0%;
 }
 .addMed{
-margin: 10% auto;
+  margin: 0 auto;
 display: inline-block;
 background-color: rgba(243, 243, 243, 0.75);
 padding: 1%;
@@ -200,7 +200,7 @@ min-height: 10rem;
     background-color: #194ba0;
     color: white;
     border-radius: 5px;
-    width: 50%;
+    width: 80%;
     height: 2rem;
     float: right;
     margin: 3% 2% 0% 0%;
@@ -306,8 +306,35 @@ border-radius: 10px;
   main {
     min-height: 40rem;
   }
+  .addTask{
+  margin: 10% auto;
+  display: inline-block;
+  background-color: rgba(243, 243, 243, 0.75);
+  padding: 1%;
+  border-radius: 10px;
+  min-height: 10rem;
+  }
+.addMed{
+  margin: 10% auto;
+display: inline-block;
+background-color: rgba(243, 243, 243, 0.75);
+padding: 1%;
+border-radius: 10px;
+// border: 1px solid black;
+// box-shadow: 10px 10px 5px #383737;
+min-height: 10rem;
 }
-
+.addMed button{
+  display: inline-block;
+    background-color: #194ba0;
+    color: white;
+    border-radius: 5px;
+    width: 50%;
+    height: 2rem;
+    float: right;
+    margin: 3% 2% 0% 0%;
+}
+}
 /* leaving animations ----------------------------------------- */
 /* rotate and fall */
 @keyframes rotateFall {
@@ -355,3 +382,5 @@ border-radius: 10px;
 .ng-leave  { animation: fadeOut 0.5s ; z-index: 1; }
 
 .ng-enter  { animation: fadeIn 0.5s ; z-index: 2;}
+@import "_mobile";
+@import "_tablet";

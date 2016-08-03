@@ -12,18 +12,18 @@
   </div>
 </div>
 <div class="row container">
-<div class="small-4 columns">
-    <div class=" addTask row small-12 columns">
+<div class="small-12 large-4 columns">
+    <div class=" addTask small-6 small-centered large-12 columns">
       <h4>Add a new Task</h4>
         <input ng-model='taskText' type="text" name="task" value="" placeholder="Describe your Task">
         <button ng-click='add()' type="button" name="add">Add Task <i class="fa fa-arrow-circle-o-right" aria-hidden="true"></i></button>
     </div>
-    <div class="row small-12 columns proTip">
+    <div class="small-5 small-centered large-12 columns proTip">
         <img src="images/lightbulb.png" alt="LightBulb" />
         <h6>{{tip.tip}}</h6>
     </div>
 </div>
-<div  class="small-8 small-centered columns taskContainer">
+<div  class="small-12 small-centered large-8 large-centered columns taskContainer">
     <div ng-repeat="task in taskList track by $index" class="task">
         <!-- <div class="postedBy">
             <h6>{{task.timestamp.dayOfWeek}} at {{task.timestamp.hour}}:{{task.timestamp.minute}}</h6>
