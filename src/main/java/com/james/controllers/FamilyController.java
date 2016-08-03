@@ -58,7 +58,7 @@ public class FamilyController {
     //send filtered list to front-end
     @RequestMapping (path = "/tasks", method = RequestMethod.GET)
     public ArrayList<Task> tasks (){
-        return (ArrayList<Task>) tasks.findByTimestampIsGreaterThan(LocalDateTime.now().minusHours(12));
+        return (ArrayList<Task>) tasks.findByTimestampIsGreaterThan(LocalDateTime.now().minusHours(24));
     }
 
     //add a task

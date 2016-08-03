@@ -28,7 +28,7 @@
 28|Extreme thirst may be an indicator of high blood sugar in someone who has diabetes.
 29|Monitor a person with diabetes for signs of low blood sugar: feeling tired, confusion, irritability.
 30|Use saline liberally to  help remove wound dressings.
-31|Monitor care recipient's temperature at least every 8 hours or otherwise indicated by physician. A fever is an indication of infection.
+31|Monitor care recipient's temperature at least every 8 hours or as indicated by physician. A fever is an indication of infection.
 32|Keep pertinent medical information in a safe but accessible place in case it is needed quickly.
 33|Remember to bring a list of all medications, upcoming specialist appointments, and questions you might have to doctor visits.
 34|Have fun for no reason.  A positive outlook is both good for you and the care recipient.
