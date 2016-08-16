@@ -1,0 +1,37 @@
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+  main{
+    min-height: 110rem;
+  }
+  .taskContainer{
+    min-height: 40rem;
+    max-height: 65rem;
+  }
+  .addMed{
+    margin: 2% auto;
+  display: inline-block;
+  background-color: rgba(243, 243, 243, 0.75);
+  padding: 1%;
+  border-radius: 10px;
+  // border: 1px solid black;
+  // box-shadow: 10px 10px 5px #383737;
+  min-height: 10rem;
+  }
+  .addTask{
+  margin: 2% auto;
+  display: inline-block;
+  background-color: rgba(243, 243, 243, 0.75);
+  padding: 1%;
+  border-radius: 10px;
+  min-height: 10rem;
+  }
+  .proTip{
+    width: 48%;
+  margin: 2% auto;
+  display: inline-block;
+  background-color: rgba(243, 243, 243, 0.75);
+  padding: 1%;
+  border-radius: 10px;
+  // border: 1px solid black;
+  // // box-shadow: 10px 10px 5px #383737;
+  }
+}

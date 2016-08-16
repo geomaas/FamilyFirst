@@ -148,7 +148,7 @@ text-shadow: 2px 2px #000000;
     margin-left: 2%;
 }
 .addTask{
-margin: 10% auto;
+margin: 0 auto;
 display: inline-block;
 background-color: rgba(243, 243, 243, 0.75);
 padding: 1%;
@@ -177,7 +177,7 @@ min-height: 10rem;
     margin: 3% 2% 0% 0%;
 }
 .addMed{
-margin: 10% auto;
+  margin: 0 auto;
 display: inline-block;
 background-color: rgba(243, 243, 243, 0.75);
 padding: 1%;
@@ -200,7 +200,7 @@ min-height: 10rem;
     background-color: #194ba0;
     color: white;
     border-radius: 5px;
-    width: 50%;
+    width: 80%;
     height: 2rem;
     float: right;
     margin: 3% 2% 0% 0%;
@@ -304,46 +304,38 @@ border-radius: 10px;
     max-height: 25rem;
   }
   main {
-    min-height: 40rem;
+    min-height: 100%;
   }
+  .addTask{
+  margin: 10% auto;
+  display: inline-block;
+  background-color: rgba(243, 243, 243, 0.75);
+  padding: 1%;
+  border-radius: 10px;
+  min-height: 10rem;
+  }
+.addMed{
+  margin: 10% auto;
+display: inline-block;
+background-color: rgba(243, 243, 243, 0.75);
+padding: 1%;
+border-radius: 10px;
+// border: 1px solid black;
+// box-shadow: 10px 10px 5px #383737;
+min-height: 10rem;
 }
-
-/* leaving animations ----------------------------------------- */
-/* rotate and fall */
-@keyframes rotateFall {
-    0%      { transform: rotateZ(0deg); }
-    20%     { transform: rotateZ(10deg); animation-timing-function: ease-out; }
-    40%     { transform: rotateZ(17deg); }
-    60%     { transform: rotateZ(16deg); }
-    100%    { transform: translateY(100%) rotateZ(17deg); }
+.addMed button{
+  display: inline-block;
+    background-color: #194ba0;
+    color: white;
+    border-radius: 5px;
+    width: 50%;
+    height: 2rem;
+    float: right;
+    margin: 3% 2% 0% 0%;
 }
-
-/* slide in from the bottom */
-@keyframes slideOutLeft {
-    to      { transform: translateX(-100%); }
 }
-
-/* rotate out newspaper */
-@keyframes rotateOutNewspaper {
-    to      { transform: translateZ(-3000px) rotateZ(360deg); opacity: 0; }
-}
-/* entering animations --------------------------------------- */
-/* scale up */
-@keyframes scaleUp {
-    from    { opacity: 0.3; -webkit-transform: scale(0.8); }
-}
-
-/* slide in from the right */
-@keyframes slideInRight {
-    from    { transform:translateX(100%); }
-    to      { transform: translateX(0); }
-}
-
-/* slide in from the bottom */
-@keyframes slideInUp {
-    from    { transform:translateY(100%); }
-    to      { transform: translateY(0); }
-}
+// animations:
 @keyframes fadeIn {
   from { opacity:0; }
   to { opacity:1; }
@@ -355,3 +347,7 @@ border-radius: 10px;
 .ng-leave  { animation: fadeOut 0.5s ; z-index: 1; }
 
 .ng-enter  { animation: fadeIn 0.5s ; z-index: 2;}
+
+
+@import "_mobile";
+@import "_tablet";
