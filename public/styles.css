@@ -292,7 +292,7 @@ main {
     min-height: 25rem;
     max-height: 25rem; }
   main {
-    min-height: 40rem; }
+    min-height: 100%; }
   .addTask {
     margin: 10% auto;
     display: inline-block;
