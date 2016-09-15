@@ -56,12 +56,12 @@ module.exports = function(app) {
         $scope.timer = function(timeGivenHr, frequency) {
             let date = new Date();
             let ctHrs = date.getHours() + 4;
-            // console.log("current time hrs",ctHrs);
+            console.log("current time hrs",ctHrs);
             let elapsedTimeHr = ctHrs - timeGivenHr;
-            // console.log("hrs elapsed ", elapsedTimeHr);
-            // console.log("frequency", frequency);
+            console.log("hrs elapsed ", elapsedTimeHr);
+            console.log("frequency", frequency);
             let percentage = elapsedTimeHr / frequency;
-            // console.log("percentage",percentage*100);
+            console.log("percentage",percentage*100);
             // let bar = $scope.model.specBar[index]
             let widthPercent = percentage * 100;
             console.log(widthPercent);
