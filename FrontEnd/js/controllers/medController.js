@@ -55,7 +55,7 @@ module.exports = function(app) {
         $scope.model = {};
         $scope.timer = function(timeGivenHr, frequency) {
             let date = new Date();
-            let ctHrs = date.getHours();
+            let ctHrs = date.getHours() + 4;
             // console.log("current time hrs",ctHrs);
             let elapsedTimeHr = ctHrs - timeGivenHr;
             // console.log("hrs elapsed ", elapsedTimeHr);
